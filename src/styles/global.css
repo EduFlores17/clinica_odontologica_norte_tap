@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-font1: #dbefff;
+  --color-font2: #18A2E6;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+
+
+  --color-h3: gray-700;
+
+
+
+  --font-display: "Jost", sans-serif;
+  
+}
