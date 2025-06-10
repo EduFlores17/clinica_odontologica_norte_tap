@@ -1,16 +1,23 @@
 @import "tailwindcss";
+@import 'swiper/css/bundle'; 
 
 @theme {
-  --color-font1: #dbefff;
-  --color-font2: #18A2E6;
-  --color-tahiti: #3ab7bf;
-  --color-bermuda: #78dcca;
+  /* Colores principales */
+  --color-font1: #dbefff;  /* fondos claros */
+  --color-font2: #265da3;  /* azul primario (botones/títulos) */
+  --color-font3: #5a8c4a;  /* verde más oscuro (mejor contraste) */
 
+  /* Hover/Interacción */
+  --color-hover1: #53eafd; /* cyan-300 */
+  --color-hover2: #1e4a8a; /* azul oscuro para hover de botones */
 
-  --color-h3: gray-700;
+  /* Textos */
+  --color-text1: #080A0C;    /* textos principales */
+  --color-text2: #364153;    /* textos secundarios */
+  --color-text3: #2D3748;    /* textos en header (gray-800) */
+  --color-text-light: #FFFFFF; /* textos claros sobre fondos oscuros */
 
-
-
-  --font-display: "Jost", sans-serif;
-  
+  /* Fuentes */
+  --font-display: "Lexend Deca", sans-serif; /* títulos */
+  --font-body: "Open Sans", system-ui, sans-serif; /* texto normal */
 }

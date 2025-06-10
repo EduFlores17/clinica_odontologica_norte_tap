@@ -2,54 +2,50 @@
 const fondoHero = "/dentista.jpg"; // Imagen de fondo profesional (ej: consultorio o sonrisa)
 const paciente = "/n.jpg"; // Tu imagen de paciente
 ---
-
-<section class="relative w-full overflow-hidden min-h-[600px] flex items-center">
-  <!-- Imagen de fondo con overlay oscuro -->
+<section class="relative w-full overflow-hidden min-h-[600px] flex items-center bg-[var(--color-font2)]">
+  <!-- Imagen de fondo con overlay -->
   <div class="absolute inset-0 z-0">
     <img 
       src={fondoHero} 
       alt="Consultorio dental moderno" 
-      class="h-full w-full object-cover object-center"
+      class="h-full w-full object-cover object-center opacity-70"
       width="1920" 
       height="1080"
     />
-    <!-- Overlay para contraste del texto -->
-    <div class="absolute inset-0 bg-blue-900/70"></div>
+    <div class="absolute inset-0 bg-[var(--color-font2)]/80"></div>
   </div>
 
-  <!-- Contenido (mismo contenedor que el header) -->
+  <!-- Contenedor centrado -->
   <div class="relative z-10 mx-auto flex max-w-6xl flex-col items-center justify-between gap-10 px-4 py-16 md:flex-row md:gap-6 md:px-6 lg:py-24">
     
-    <!-- Lado izquierdo: Texto -->
+    <!-- Texto principal -->
     <div class="max-w-2xl text-center md:text-left">
-      <h1 class="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
-        <span class="bg-gradient-to-r from-cyan-300 to-white bg-clip-text text-transparent">
+      <h1 class="mb-6 text-4xl font-bold leading-tight font-display text-[var(--color-text-light)] sm:text-5xl md:text-6xl">
+        <span class="bg-gradient-to-r from-[var(--color-font3)] to-[var(--color-font1)] bg-clip-text text-transparent">
           Sonrisas
         </span> 
-        <span class="text-cyan-300">que inspiran</span> confianza
+        <span class="text-[var(--color-hover1)]">que inspiran</span> confianza
       </h1>
 
-      <p class="mb-8 text-lg font-light leading-relaxed text-blue-100 md:text-xl">
+      <p class="mb-8 text-lg font-light leading-relaxed text-[var(--color-font1)] md:text-xl font-display">
         Tecnología de vanguardia y un enfoque humano para cuidar de tu salud dental.
       </p>
 
       <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-start">
-        <a href="#servicios" class="transform rounded-full bg-cyan-400 px-8 py-3 text-lg font-semibold text-blue-900 shadow-lg transition-all hover:scale-105 hover:bg-cyan-300 hover:shadow-cyan-300/30">
+        <a href="#servicios" class="transform rounded-full bg-[var(--color-font3)] px-8 py-3 text-lg font-semibold text-[var(--color-text1)] shadow-lg transition-all hover:scale-105 hover:bg-[var(--color-hover1)]/90 hover:shadow-[var(--color-hover1)]/30 font-[var(--font-display)]">
           Nuestros servicios
         </a>
         
-        <a href="#servicios" class="transform rounded-full bg-cyan-400 px-8 py-3 text-lg font-semibold text-blue-900 shadow-lg transition-all hover:scale-105 hover:bg-cyan-300 hover:shadow-cyan-300/30">
-          Contactanos
+        <a href="#contacto" class="transform rounded-full bg-white/10 px-8 py-3 text-lg font-semibold text-[var(--color-text-light)] shadow-lg transition-all hover:scale-105 hover:bg-white/20 hover:shadow-white/10 font-[var(--font-display)] border border-white/20">
+          Contáctanos
         </a>
       </div>
     </div>
 
-    <!-- Lado derecho: Imagen circular (mejorada) -->
+    <!-- Imagen redonda del paciente -->
     <div class="relative">
-      <!-- Efecto de sombra 3D -->
-      <div class="absolute -inset-4 rounded-full bg-gradient-to-br from-blue-700/60 to-cyan-500/60 blur-xl"></div>
+      <div class="absolute -inset-4 rounded-full bg-gradient-to-br from-[var(--color-font2)]/60 to-[var(--color-hover1)]/60 blur-xl"></div>
       
-      <!-- Marco con borde sutil -->
       <div class="relative overflow-hidden rounded-full border-[6px] border-white/30 shadow-2xl">
         <img 
           src={paciente} 
@@ -59,8 +55,6 @@ const paciente = "/n.jpg"; // Tu imagen de paciente
           height="400"
         />
       </div>
-      
-    
     </div>
   </div>
 </section>
