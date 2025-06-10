@@ -3,9 +3,10 @@
 
 @theme {
   /* Colores principales */
-  --color-font1: #dbefff;  /* fondos claros */
-  --color-font2: #265da3;  /* azul primario (botones/títulos) */
+  --color-font1: #ffffff;  /* fondos claros */
+  --color-font2: #18A2E6;  /* azul primario (botones/títulos) */
   --color-font3: #5a8c4a;  /* verde más oscuro (mejor contraste) */
+  --color-font4: #DBEFFF;  /* azul blanco*/
 
   /* Hover/Interacción */
   --color-hover1: #53eafd; /* cyan-300 */
@@ -15,6 +16,7 @@
   --color-text1: #080A0C;    /* textos principales */
   --color-text2: #364153;    /* textos secundarios */
   --color-text3: #2D3748;    /* textos en header (gray-800) */
+  --color-text4: #3D3D3D;    
   --color-text-light: #FFFFFF; /* textos claros sobre fondos oscuros */
 
   /* Fuentes */

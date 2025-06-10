@@ -36,12 +36,12 @@ const servicios = [
 ---
 
 <Layout title="Nuestros Servicios">
-  <main class="bg-white">
+  <main class="bg-font4">
     <!-- Sección Servicios -->
     <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto font-display">
       <!-- Encabezado -->
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-[var(--color-font2)] mb-4">Nuestros Servicios Odontológicos</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]">Nuestros Servicios Odontológicos</h2>
         <p class="text-[var(--color-text2)] font-display max-w-2xl mx-auto text-lg">
           Ofrecemos tratamientos integrales con tecnología de última generación para cuidar tu salud bucal en todas las etapas de la vida.
         </p>
@@ -60,11 +60,11 @@ const servicios = [
 
             <!-- Contenido blanco -->
             <div class="bg-white p-4">
-              <h3 class="font-bold text-[var(--color-font2)] text-base mb-2">{servicio.titulo}</h3>
-              <p class="text-sm text-[var(--color-text2)] leading-snug mb-4">
+              <h3 class="font-bold text-text1 text-base mb-2">{servicio.titulo}</h3>
+              <p class="text-sm text-text4 leading-snug mb-4">
                 {servicio.texto}
               </p>
-              <a href="/contacto" class="text-sm font-semibold text-[var(--color-font3)] hover:underline transition">
+              <a href="/contacto" class="text-sm font-semibold text-font2 hover:underline transition">
                 Saber más →
               </a>
             </div>
@@ -77,30 +77,6 @@ const servicios = [
         <a href="/contacto" class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300">
           Agendar una cita
         </a>
-      </div>
-    </section>
-
-    <!-- Sección adicional -->
-    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-font1)]/10 font-display">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-2xl font-bold text-[var(--color-font2)] mb-6">Tecnología Avanzada para tu Salud Dental</h2>
-        <p class="text-[var(--color-text2)] mb-8 text-lg ">
-          Contamos con equipos de última generación como radiografía digital, scanner intraoral y tecnología CAD/CAM para ofrecerte diagnósticos precisos y tratamientos más rápidos y efectivos.
-        </p>
-        <div class="flex flex-wrap justify-center gap-6">
-          <div class="bg-white px-6 py-4 rounded-lg shadow-sm">
-            <span class="text-xl font-bold text-[var(--color-font2)]">+5,000</span>
-            <p class="text-[var(--color-text2)] text-sm">Pacientes atendidos</p>
-          </div>
-          <div class="bg-white px-6 py-4 rounded-lg shadow-sm">
-            <span class="text-xl font-bold text-[var(--color-font3)]">15+</span>
-            <p class="text-[var(--color-text2)] text-sm">Años de experiencia</p>
-          </div>
-          <div class="bg-white px-6 py-4 rounded-lg shadow-sm">
-            <span class="text-xl font-bold text-[var(--color-font2)]">98%</span>
-            <p class="text-[var(--color-text2)] text-sm">Satisfacción</p>
-          </div>
-        </div>
       </div>
     </section>
   </main>

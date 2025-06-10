@@ -1,141 +1,137 @@
-<section id="contacto" class="bg-gradient-to-b from-gray-50 to-white py-24 px-4 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-5xl font-display">
-    <div class="mb-16 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-font2 mb-4">Contáctanos</h2>
-      <div class="w-20 h-1 bg-font3 mx-auto mb-6"></div>
-      <p class="mt-4 text-text2 text-lg max-w-2xl mx-auto">
-        Estamos listos para ayudarte a lograr la sonrisa que mereces. ¡Agenda tu cita hoy mismo!
+<!-- Sección Contacto - Diseño Exacto -->
+<section id="contacto" class="bg-font4 py-16 px-4 sm:px-6 lg:px-8 font-display">
+  <div class="max-w-4xl mx-auto">
+    <!-- Encabezado -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-[var(--color-text1)] font-[var(--font-display)] mb-4">Contacto</h2>
+      <p class="text-[var(--color-text2)] font-[var(--font-body)]">
+        Estamos aquí para responder tus preguntas y ayudarte a programar tu cita.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      <!-- Formulario para WhatsApp -->
-      <form class="space-y-6 bg-white p-8 rounded-2xl shadow-xl border border-gray-100" id="whatsappForm">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Formulario -->
+      <div class="space-y-6 rounded-xl bg-white p-5">
         <div>
-          <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre completo*</label>
+          <label class="block text-sm font-semibold text-[var(--color-text1)] mb-2">Nombre completo</label>
           <input 
             id="nombre"
-            name="nombre"
             type="text" 
-            required 
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-            placeholder="Ej. Juan Pérez"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[var(--color-font2)] focus:ring-2 focus:ring-[var(--color-font1)]/50"
+            placeholder="Tu nombre"
           />
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Correo electrónico*</label>
-            <input 
-              id="email"
-              name="email"
-              type="email" 
-              required 
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-              placeholder="tucorreo@ejemplo.com"
-            />
-          </div>
+        <div>
+          <label class="block text-sm font-semibold text-[var(--color-text1)] mb-2">Correo Electrónico</label>
+          <input 
+            id="email"
+            type="email" 
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[var(--color-font2)] focus:ring-2 focus:ring-[var(--color-font1)]/50"
+            placeholder="Tu correo electrónico"
+          />
+        </div>
 
-          <div>
-            <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">Teléfono*</label>
-            <input 
-              id="telefono"
-              name="telefono"
-              type="tel" 
-              required 
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-              placeholder="+52 55 1234 5678"
-            />
-          </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-[var(--color-text1)] mb-2">Servicio de interés</label>
+          <select id="servicio" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[var(--color-font2)] focus:ring-2 focus:ring-[var(--color-font1)]/50">
+            <option>Selecciona un servicio</option>
+            <option>Blanqueamiento dental</option>
+            <option>Ortodoncia</option>
+            <option>Implantes dentales</option>
+            <option>Limpieza dental</option>
+          </select>
         </div>
 
         <div>
-          <label for="mensaje" class="block text-sm font-semibold text-gray-700 mb-2">¿Cómo podemos ayudarte?*</label>
+          <label class="block text-sm font-semibold text-[var(--color-text1)] mb-2">Mensaje</label>
           <textarea 
             id="mensaje"
-            name="mensaje"
-            rows="5" 
-            required 
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-            placeholder="Describe tu consulta o tratamiento de interés"
+            rows="4"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[var(--color-font2)] focus:ring-2 focus:ring-[var(--color-font1)]/50"
+            placeholder="¿Cómo podemos ayudarte?"
           ></textarea>
         </div>
 
-        <button 
-          type="button" 
-          onclick="enviarWhatsApp()"
-          class="w-full bg-gradient-to-r from-font2 to-font3 hover:from-font3 hover:to-font2 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
-        >
-          <svg class="w-5 h-5 mr-2 inline" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-6.29 3.617c-.545 0-1.06-.113-1.529-.338-.143-.071-.272-.16-.388-.263l-.39 1.122c.121.182.319.364.515.515l1.119-.391a3.7 3.7 0 01-.327-.191 3.827 3.827 0 01-1.002-.854 3.921 3.921 0 01-.793-1.191 4.19 4.19 0 01-.283-1.523c0-.82.257-1.604.734-2.269a3.66 3.66 0 011.958-1.336c.851-.23 1.741-.12 2.513.308a3.577 3.577 0 011.453 1.682c.305.69.403 1.438.283 2.173a3.81 3.81 0 01-1.075 2.071 3.699 3.699 0 01-2.078 1.02 4.515 4.515 0 01-.533.032zM12 22a9.965 9.965 0 01-7.071-2.929A9.965 9.965 0 012 12a9.965 9.965 0 012.929-7.071A9.965 9.965 0 0112 2a9.965 9.965 0 017.071 2.929A9.965 9.965 0 0122 12a9.965 9.965 0 01-2.929 7.071A9.965 9.965 0 0112 22z"/>
-          </svg>
-          Enviar por WhatsApp
+        <button onclick="enviarWhatsApp()" class="w-full bg-[var(--color-font2)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-hover2)] transition-colors">
+          Enviar mensaje
         </button>
-      </form>
+      </div>
 
-      <!-- Información de contacto en UNA SOLA CARD -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-        <div class="space-y-6">
-          <!-- Encabezado -->
-          <div class="text-center mb-6">
-            <h3 class="text-2xl font-bold text-text1">Información de Contacto</h3>
-            <div class="w-12 h-1 bg-font2 mx-auto mt-2"></div>
-          </div>
-          
-          <!-- Dirección -->
-          <div class="flex items-start">
-            <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
-              <svg class="w-5 h-5 text-font2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-text1">Dirección</h4>
-              <p class="text-text3">Avenida Siempre Viva 123, Col. Centro<br>Ciudad de México, CDMX 06000</p>
-            </div>
-          </div>
+      <!-- Información de contacto -->
+      <!-- (se mantiene igual sin cambios) -->
+      <!-- ... Todo tu contenido original de información de contacto aquí ... -->
 
-          <!-- Horario -->
-          <div class="flex items-start">
-            <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
-              <svg class="w-5 h-5 text-font2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-800">Horario de atención</h4>
-              <p class="text-gray-600">
-                Lunes a Viernes: 9:00 AM - 6:00 PM<br>
-                Sábados: 9:00 AM - 2:00 PM<br>
-                Domingos: Cerrado
-              </p>
-            </div>
+      <!-- Información de contacto -->
+      <div class="space-y-6 rounded-xl bg-white p-5">
+        <h3 class="text-xl font-bold text-[var(--color-text1)] font-[var(--font-display)] mb-4">Información de contacto</h3>
+        
+        <div class="flex items-start gap-4">
+          <div class="w-5 h-5 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-[var(--color-font2)]">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
           </div>
-
-          <!-- Contacto -->
-          <div class="flex items-start">
-            <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
-              <svg class="w-5 h-5 text-font2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-800">Contacto</h4>
-              <p class="text-gray-600 mb-1">
-                <a href="tel:+521234567890" class="hover:text-blue-600 transition-colors flex items-center">
-                  <span class="mr-2">📞</span> +52 123 456 7890
-                </a>
-              </p>
-              <p class="text-gray-600">
-                <a href="mailto:contacto@clinicanorte.mx" class="hover:text-blue-600 transition-colors flex items-center">
-                  <span class="mr-2">✉️</span> contacto@clinicanorte.mx
-                </a>
-              </p>
-            </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text1)]">Dirección</h4>
+            <p class="text-[var(--color-text2)]">Avenida oral B. Colonia 5 de febrero.<br>Tapachula, Chiapas</p>
           </div>
         </div>
-      </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-5 h-5 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-[var(--color-font2)]">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text1)]">Teléfono</h4>
+            <p class="text-[var(--color-text2)]">+52 962 220 2022</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-5 h-5 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-[var(--color-font2)]">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text1)]">Email</h4>
+            <p class="text-[var(--color-text2)]">fedu17i@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-5 h-5 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-[var(--color-font2)]">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--color-text1)]">Horario de atención</h4>
+            <p class="text-[var(--color-text2)]">Lunes a sábado de 10 a 17 hrs</p>
+          </div>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="pt-4">
+          <h4 class="font-semibold text-[var(--color-text1)] mb-2">Síguenos:</h4>
+          <div class="flex gap-4">
+            <a href="#" class="text-[var(--color-font2)] hover:text-[var(--color-hover2)]">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-[var(--color-font2)] hover:text-[var(--color-hover2)]">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
     </div>
   </div>
 </section>
@@ -143,43 +139,29 @@
 <script type="module">
   function enviarWhatsApp() {
     try {
-      const nombreInput = document.getElementById('nombre');
-      const emailInput = document.getElementById('email');
-      const telefonoInput = document.getElementById('telefono');
-      const mensajeInput = document.getElementById('mensaje');
+      const nombre = document.getElementById('nombre')?.value.trim();
+      const email = document.getElementById('email')?.value.trim();
+      const servicio = document.getElementById('servicio')?.value.trim();
+      const mensaje = document.getElementById('mensaje')?.value.trim();
 
-      if (
-        !(nombreInput instanceof HTMLInputElement) ||
-        !(emailInput instanceof HTMLInputElement) ||
-        !(telefonoInput instanceof HTMLInputElement) ||
-        !(mensajeInput instanceof HTMLTextAreaElement)
-      ) {
-        alert('No se pudieron obtener los elementos del formulario correctamente');
-        return;
-      }
-
-      const nombre = nombreInput.value.trim();
-      const email = emailInput.value.trim();
-      const telefono = telefonoInput.value.trim();
-      const mensaje = mensajeInput.value.trim();
-
-      if (!nombre || !email || !telefono || !mensaje) {
-        alert('Por favor completa todos los campos requeridos');
+      if (!nombre || !email || !mensaje || servicio === 'Selecciona un servicio') {
+        alert('Por favor completa todos los campos requeridos.');
         return;
       }
 
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Por favor ingresa un correo electrónico válido');
+        alert('Por favor ingresa un correo electrónico válido.');
         return;
       }
 
-      const texto = `Hola, soy *${encodeURIComponent(nombre)}* y quisiera información sobre sus servicios.%0A%0A*Mis datos:*%0A📧 Email: ${encodeURIComponent(email)}%0A📞 Teléfono: ${encodeURIComponent(telefono)}%0A%0A*Mensaje:*%0A${encodeURIComponent(mensaje)}`;
+      const texto = `Hola, soy *${encodeURIComponent(nombre)}* y quisiera información sobre el servicio de *${encodeURIComponent(servicio)}*.
+%0A%0A*Mis datos:*%0A📧 Email: ${encodeURIComponent(email)}%0A*Mensaje:*%0A${encodeURIComponent(mensaje)}`;
 
       const numeroWhatsApp = '+5219622152670';
       window.open(`https://wa.me/${numeroWhatsApp}?text=${texto}`, '_blank');
     } catch (error) {
       console.error('Error al enviar el mensaje:', error);
-      alert('Ocurrió un error al intentar enviar el mensaje. Por favor inténtalo de nuevo.');
+      alert('Ocurrió un error al intentar enviar el mensaje. Por favor, inténtalo de nuevo.');
     }
   }
 
