@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-
 ---
 
 <!doctype html>
@@ -19,7 +18,8 @@ import "../styles/global.css";
   <body>
     <slot />
     <!-- Aquí se inyectarán los componentes -->
-    <script type="module" src="/swiper-init.js"></script>
-
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.mjs";
+    </script>
   </body>
 </html>
