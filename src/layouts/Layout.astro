@@ -2,7 +2,7 @@
 import "../styles/global.css";
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
@@ -13,13 +13,19 @@ import "../styles/global.css";
       href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap"
       rel="stylesheet"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
+    ></script>
+
     <title>Clínica Odontológica Norte</title>
   </head>
   <body>
     <slot />
-    <!-- Aquí se inyectarán los componentes -->
-    <script type="module">
-      import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.mjs";
-    </script>
   </body>
 </html>
