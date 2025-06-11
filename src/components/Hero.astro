@@ -1,26 +1,25 @@
 ---
-const fondoHero = ""; // Lo dejamos vacío porque no hay fondo con imagen
-const paciente = "/n.jpg"; // Imagen redonda (usa la tuya real)
+const fondoHero = "";
+const paciente = "/n.jpg";
 ---
 
-<section class="min-h-[555px] bg-font2 flex items-center justify-center px-6 py-16">
+<section class="min-h-[555px] bg-font2 flex items-center justify-center px-4 sm:px-6 py-16">
   <div class="max-w-5xl w-full flex flex-col md:flex-row items-center justify-between gap-8">
     
-    <!-- Texto a la izquierda -->
+    <!-- Texto -->
     <div class="text-white max-w-xl text-center md:text-left">
-      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
         Tu sonrisa, nuestra <br /> prioridad.
       </h1>
-      <p class="text-sm sm:text-base font-medium">
+      <p class="text-sm sm:text-base md:text-lg font-medium">
         Transformamos sonrisas con los tratamientos dentales estéticos<br />
         más avanzados y personalizados para ti.
       </p>
     </div>
 
-    <!-- Círculo blanco o imagen redonda -->
+    <!-- Imagen -->
     <div class="flex-shrink-0">
-      <div class="h-48 w-48 rounded-full bg-white md:h-60 md:w-60 overflow-hidden">
-        
+      <div class="h-40 w-40 sm:h-48 sm:w-48 md:h-60 md:w-60 rounded-full bg-white overflow-hidden">
         <img src={paciente} alt="Paciente feliz" class="w-full h-full object-cover" />
       </div>
     </div>

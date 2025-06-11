@@ -5,19 +5,18 @@ import { servicios } from '../scripts/servicios.js';
 
 <Layout title="Nuestros Servicios">
   <main class="bg-font4">
-    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto font-display">
-      <!-- Encabezado -->
+    <section id="servicios" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl w-full mx-auto font-display">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]">
           Nuestros Servicios Odontológicos
         </h2>
-        <p class="text-[var(--color-text2)] font-display max-w-2xl mx-auto text-lg">
+        <p class="text-[var(--color-text2)] max-w-2xl mx-auto text-lg">
           Ofrecemos tratamientos integrales con tecnología de última generación para cuidar tu salud bucal en todas las etapas de la vida.
         </p>
       </div>
 
-      <!-- Grid de Servicios -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           servicios.map((servicio) => (
             <div class="max-w-sm rounded-lg shadow-md overflow-hidden border border-gray-200">
@@ -27,9 +26,9 @@ import { servicios } from '../scripts/servicios.js';
                 </svg>
               </div>
               <div class="bg-white p-4">
-                <h3 class="font-bold text-text1 text-base mb-2">{servicio.titulo}</h3>
-                <p class="text-sm text-text4 leading-snug mb-4">{servicio.texto}</p>
-                <a href="/contacto" class="text-sm font-semibold text-font2 hover:underline transition">
+                <h3 class="font-bold text-text1 text-base sm:text-lg mb-2">{servicio.titulo}</h3>
+                <p class="text-sm sm:text-base text-text4 leading-snug mb-4">{servicio.texto}</p>
+                <a href="#contacto" class="text-sm font-semibold text-font2 hover:underline transition">
                   Saber más →
                 </a>
               </div>
@@ -38,9 +37,8 @@ import { servicios } from '../scripts/servicios.js';
         }
       </div>
 
-      <!-- CTA -->
       <div class="mt-16 text-center">
-        <a href="/contacto" class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300">
+        <a href="#contacto" class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300">
           Agendar una cita
         </a>
       </div>

@@ -2,7 +2,7 @@
 import { ofertas } from '../scripts/ofertas.js';
 ---
 
-<div class="bg-font1 py-16 px-4 sm:px-6 lg:px-8 font-display">
+<section id="ofertas" class="bg-font1 py-16 px-4 sm:px-6 lg:px-8 font-display">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl font-bold text-center text-[var(--color-text1)] mb-10">
       Ofertas Especiales
@@ -13,20 +13,20 @@ import { ofertas } from '../scripts/ofertas.js';
       loop="true"
       pagination="true"
       navigation="true"
-      class="rounded-xl overflow-hidden shadow-xl h-[450px]"
+      class="rounded-xl overflow-hidden shadow-xl h-[350px] sm:h-[450px]"
       style="--swiper-pagination-color: white; --swiper-navigation-color: white;"
     >
       {
         ofertas.map((oferta) => (
           <swiper-slide key={oferta.id}>
-            <img src={oferta.imagen} alt={oferta.titulo} class="w-full h-[350px] object-cover" />
-            <div class="bg-font2 text-white p-6 text-center">
-              <h3 class="text-xl font-semibold">{oferta.titulo}</h3>
-              <p>{oferta.descripcion}</p>
+            <img src={oferta.imagen} alt={oferta.titulo} class="w-full h-[200px] sm:h-[350px] object-cover" />
+            <div class="bg-font2 text-white p-4 sm:p-6 text-center">
+              <h3 class="text-lg sm:text-xl font-semibold">{oferta.titulo}</h3>
+              <p class="text-sm sm:text-base">{oferta.descripcion}</p>
             </div>
           </swiper-slide>
         ))
       }
     </swiper-container>
   </div>
-</div>
+</section>

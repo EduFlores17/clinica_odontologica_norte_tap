@@ -22,3 +22,11 @@
   --font-display: "Lexend Deca", sans-serif; /* títulos */
   --font-body: "Open Sans", system-ui, sans-serif; /* texto normal */
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  padding-top: 7.5rem; /* Ajusta el valor según el tamaño de tu encabezado */
+}
