@@ -1,47 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const servicios = [
-  {
-    titulo: "Odontología General",
-    texto: "Revisiones periódicas, limpiezas dentales, tratamientos de caries y soluciones para problemas bucales comunes.",
-    icon: "M9 12l2 2 4-4"
-  },
-  {
-    titulo: "Ortodoncia",
-    texto: "Brackets metálicos, estéticos y alineadores invisibles para corregir la posición de tus dientes.",
-    icon: "M19 21V5a2 2..."
-  },
-  {
-    titulo: "Estética Dental",
-    texto: "Carillas, blanqueamientos y reconstrucciones para lograr una sonrisa perfecta y natural.",
-    icon: "M7 21a4 4..."
-  },
-  {
-    titulo: "Implantes Dentales",
-    texto: "Soluciones permanentes para reemplazar dientes perdidos con la máxima funcionalidad y estética.",
-    icon: "M20 7l-8-4..."
-  },
-  {
-    titulo: "Odontopediatría",
-    texto: "Cuidado dental especializado para niños, con un enfoque preventivo y tratamientos adaptados.",
-    icon: "M16 7a4 4..."
-  },
-  {
-    titulo: "Endodoncia",
-    texto: "Tratamiento de conductos para salvar dientes dañados o infectados, eliminando el dolor.",
-    icon: "M9 5H7a2 2..."
-  }
-];
+import { servicios } from '../scripts/servicios.js';
 ---
 
 <Layout title="Nuestros Servicios">
   <main class="bg-font4">
-    <!-- Sección Servicios -->
     <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto font-display">
       <!-- Encabezado -->
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]">Nuestros Servicios Odontológicos</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]">
+          Nuestros Servicios Odontológicos
+        </h2>
         <p class="text-[var(--color-text2)] font-display max-w-2xl mx-auto text-lg">
           Ofrecemos tratamientos integrales con tecnología de última generación para cuidar tu salud bucal en todas las etapas de la vida.
         </p>
@@ -49,27 +18,24 @@ const servicios = [
 
       <!-- Grid de Servicios -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {servicios.map((servicio) => (
-          <div class="max-w-sm rounded-lg shadow-md overflow-hidden border border-gray-200">
-            <!-- Parte azul con ícono centrado -->
-            <div class="bg-[var(--color-font2)] flex items-center justify-center h-28">
-              <svg class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path d={servicio.icon} stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-              </svg>
+        {
+          servicios.map((servicio) => (
+            <div class="max-w-sm rounded-lg shadow-md overflow-hidden border border-gray-200">
+              <div class="bg-[var(--color-font2)] flex items-center justify-center h-28">
+                <svg class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d={servicio.icon} stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="bg-white p-4">
+                <h3 class="font-bold text-text1 text-base mb-2">{servicio.titulo}</h3>
+                <p class="text-sm text-text4 leading-snug mb-4">{servicio.texto}</p>
+                <a href="/contacto" class="text-sm font-semibold text-font2 hover:underline transition">
+                  Saber más →
+                </a>
+              </div>
             </div>
-
-            <!-- Contenido blanco -->
-            <div class="bg-white p-4">
-              <h3 class="font-bold text-text1 text-base mb-2">{servicio.titulo}</h3>
-              <p class="text-sm text-text4 leading-snug mb-4">
-                {servicio.texto}
-              </p>
-              <a href="/contacto" class="text-sm font-semibold text-font2 hover:underline transition">
-                Saber más →
-              </a>
-            </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
 
       <!-- CTA -->
