@@ -18,12 +18,19 @@ import { ofertas } from '../scripts/ofertas.js';
     >
       {
         ofertas.map((oferta) => (
-          <swiper-slide key={oferta.id}>
-            <img src={oferta.imagen} alt={oferta.titulo} class="w-full h-[200px] sm:h-[350px] object-cover" />
-            <div class="bg-font2 text-white p-4 sm:p-6 text-center">
-              <h3 class="text-lg sm:text-xl font-semibold">{oferta.titulo}</h3>
-              <p class="text-sm sm:text-base">{oferta.descripcion}</p>
-            </div>
+          <swiper-slide aria-label={`Oferta: ${oferta.titulo}`}>
+            <article class="h-full flex flex-col">
+              <img 
+                src={oferta.imagen} 
+                alt={`Promoción: ${oferta.titulo}`} 
+                class="w-full h-[200px] sm:h-[350px] object-cover" 
+                loading="lazy" 
+              />
+              <div class="bg-font2 text-white p-4 sm:p-6 text-center flex-1 flex flex-col justify-center">
+                <h3 class="text-lg sm:text-xl font-semibold">{oferta.titulo}</h3>
+                <p class="text-sm sm:text-base">{oferta.descripcion}</p>
+              </div>
+            </article>
           </swiper-slide>
         ))
       }

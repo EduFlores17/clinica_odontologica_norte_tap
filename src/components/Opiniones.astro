@@ -1,4 +1,5 @@
 ---
+// Asegúrate de que las opiniones están siendo importadas correctamente
 import { opiniones } from '../scripts/opiniones.js';
 ---
 
@@ -24,7 +25,7 @@ import { opiniones } from '../scripts/opiniones.js';
             <div class="mb-6 flex items-center gap-4">
               <img 
                 src={opinion.imagen} 
-                alt={opinion.nombre} 
+                alt={`Foto de ${opinion.nombre}`} 
                 class="h-14 w-14 rounded-full object-cover shadow-md"
                 width="56"
                 height="56"
@@ -32,7 +33,7 @@ import { opiniones } from '../scripts/opiniones.js';
               <div>
                 <p class="font-bold text-text1">{opinion.nombre}</p>
                 <p class="text-sm text-font2">{opinion.tratamiento}</p>
-                <div class="mt-1 flex text-yellow-400">
+                <div class="mt-1 flex text-yellow-400" aria-label={`Calificación de ${opinion.nombre}`}>
                   {'★'.repeat(opinion.calificacion)}{'☆'.repeat(5 - opinion.calificacion)}
                 </div>
               </div>

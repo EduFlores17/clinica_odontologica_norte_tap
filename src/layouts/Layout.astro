@@ -1,12 +1,37 @@
 ---
 import "../styles/global.css";
 ---
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clínica Odontológica Norte | Sonríe con Confianza</title>
+
+    <!-- Meta SEO -->
+    <meta name="description" content="Clínica Odontológica Norte - Servicios de calidad en ortodoncia, blanqueamiento dental, implantes y más. Atención profesional en un ambiente amigable." />
+    <meta name="keywords" content="dentista, odontología, clínica dental, ortodoncia, implantes, blanqueamiento dental, sonrisa, salud bucal" />
+    <meta name="author" content="Clínica Odontológica Norte" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph para compartir en redes -->
+    <meta property="og:title" content="Clínica Odontológica Norte" />
+    <meta property="og:description" content="Especialistas en tu sonrisa. Atención profesional, moderna y cercana." />
+    <meta property="og:image" content="/Clinica1.png" />
+    <meta property="og:url" content="https://clinica-odontologica-norte-tap.vercel.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Clínica Odontológica Norte" />
+    <meta name="twitter:description" content="Descubre todos nuestros servicios para tu salud bucal." />
+    <meta name="twitter:image" content="/Clinica1.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/Clinica1.png" type="image/png" />
+
+    <!-- Tipografía -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,6 +39,7 @@ import "../styles/global.css";
       rel="stylesheet"
     />
 
+    <!-- Swiper -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -22,9 +48,8 @@ import "../styles/global.css";
       type="module"
       src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
     ></script>
-
-    <title>Clínica Odontológica Norte</title>
   </head>
+
   <body>
     <slot />
   </body>
