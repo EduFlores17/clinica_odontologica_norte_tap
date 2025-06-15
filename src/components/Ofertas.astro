@@ -8,38 +8,36 @@ import { ofertas } from '../scripts/ofertas.js';
       Ofertas Especiales
     </h2>
 
-  <swiper-container
-  slides-per-view="1"
-  loop="true"
-  pagination="true"
-  navigation="true"
-  autoplay-delay="2000"
-  autoplay-disable-on-interaction="false"
-  class="rounded-xl overflow-hidden shadow-xl"
-  style="--swiper-pagination-color: white; --swiper-navigation-color: white;"
->
-  {
-    ofertas.map((oferta) => (
-      <swiper-slide aria-label={`Oferta: ${oferta.titulo}`}>
-        <article class="flex flex-col">
-          <div class="relative w-full h-[350px] sm:h-[450px] overflow-hidden">
-            <img 
-              src={oferta.imagen} 
-              alt={`Promoción: ${oferta.titulo}`} 
-              class="w-full h-full object-cover object-top" 
-              loading="lazy" 
-            />
-          </div>
-          <div class="bg-font2 text-white py-4 sm:py-6 text-center z-10 relative">
-            <h3 class="text-lg sm:text-xl font-semibold">{oferta.titulo}</h3>
-            <p class="text-sm sm:text-base">{oferta.descripcion}</p>
-          </div>
-        </article>
-      </swiper-slide>
-    ))
-  }
-</swiper-container>
-
-
+    <swiper-container
+      slides-per-view="1"
+      loop="true"
+      pagination="true"
+      navigation="true"
+      autoplay-delay="2000"
+      autoplay-disable-on-interaction="false"
+      class="rounded-xl overflow-hidden shadow-xl"
+      style="--swiper-pagination-color: white; --swiper-navigation-color: white;"
+    >
+      {
+        ofertas.map((oferta) => (
+          <swiper-slide aria-label={`Oferta: ${oferta.titulo}`}>
+            <article class="flex flex-col h-full">
+              <div class="relative w-full h-[50vh] min-h-[300px] sm:h-[450px] overflow-hidden">
+                <img 
+                  src={oferta.imagen} 
+                  alt={`Promoción: ${oferta.titulo}`} 
+                  class="w-full h-full object-contain sm:object-cover object-center bg-white" 
+                  loading="lazy" 
+                />
+              </div>
+              <div class="bg-font2 text-white py-4 sm:py-6 text-center z-10 relative">
+                <h3 class="text-lg sm:text-xl font-semibold">{oferta.titulo}</h3>
+                <p class="text-sm sm:text-base">{oferta.descripcion}</p>
+              </div>
+            </article>
+          </swiper-slide>
+        ))
+      }
+    </swiper-container>
   </div>
 </section>
