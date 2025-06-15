@@ -1,11 +1,30 @@
 ---
-// src/components/Servicios.astro
+import Layout from "../layouts/Layout.astro";
 import { servicios } from "../scripts/servicios.js";
 ---
 
-<!-- Contenedor principal -->
-<div class="relative py-8 max-w-5xl mx-auto font-display">
-  <!-- Swiper container -->
+<Layout title="Nuestros Servicios">
+  <main class="bg-font4" role="main">
+    <section
+      id="servicios"
+      class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl w-full mx-auto font-display"
+      aria-labelledby="titulo-servicios"
+    >
+      <header class="text-center mb-12">
+        <h2
+          id="titulo-servicios"
+          class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]"
+        >
+          Nuestros Servicios Odontológicos
+        </h2>
+        <p class="text-[var(--color-text2)] max-w-2xl mx-auto text-lg">
+          Ofrecemos tratamientos integrales con tecnología de última generación
+          para cuidar tu salud bucal en todas las etapas de la vida.
+        </p>
+      </header>
+
+      <!-- Swiper con múltiples tarjetas -->
+    <!-- Swiper container -->
   <swiper-container
     slides-per-view="3"
     space-between="16"
@@ -19,7 +38,7 @@ import { servicios } from "../scripts/servicios.js";
   >
     {servicios.map((servicio) => (
       <swiper-slide key={servicio.titulo} aria-label={`Servicio: ${servicio.titulo}`}>
-        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[400px] sm:min-h-[440px]">
+        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[500px] sm:min-h-[440px]">
           <div class="w-full h-44 sm:h-52 overflow-hidden">
             <img 
               src={servicio.imagen} 
@@ -52,7 +71,6 @@ import { servicios } from "../scripts/servicios.js";
     ))}
   </swiper-container>
 
-  <!-- Estilos para las flechas de navegación -->
   <style>
     swiper-container::part(button-prev),
     swiper-container::part(button-next) {
@@ -85,3 +103,16 @@ import { servicios } from "../scripts/servicios.js";
     }
   </style>
 </div>
+
+      <!-- CTA -->
+      <div class="mt-16 text-center">
+        <a
+          href="#contacto"
+          class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300"
+        >
+          Agendar una cita
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
