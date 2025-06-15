@@ -1,20 +1,26 @@
 export const ofertas = [
   {
     id: 1,
-    titulo: "Blanqueamiento 2x1",
-    descripcion: "Aprovecha este mes y obtén un tratamiento gratis con tu cita.",
-    imagen: "/oferta1.jpg",
+    titulo: "Resinas en buen precio.",
+    descripcion: "Aprovecha este mes con el tratamiento de 6 resinas a $2650.00 MXN .",
+    imagen: "/img_ofertas/promo.png",
   },
   {
     id: 2,
-    titulo: "Consulta Gratis",
-    descripcion: "Primera consulta sin costo para pacientes nuevos.",
-    imagen: "/oferta2.jpg",
+    titulo: "Pide tu cita.",
+    descripcion: "Al número de telefono: 962 127 8373",
+    imagen: "/img_ofertas/promo2.png",
   },
   {
     id: 3,
-    titulo: "Descuento en Ortodoncia",
-    descripcion: "Hasta 20% en tratamientos seleccionados.",
-    imagen: "/oferta3.jpg",
+    titulo: "Blanqueamiento dental + Limpieza dental.",
+    descripcion: "Todo esto en un precio de $1899.00 MXN",
+    imagen: "/img_ofertas/promo3.png",
+  },
+  {
+    id: 4,
+    titulo: "Tu salud, es primero.",
+    descripcion: "2 resinas + limpieza dental + Cepillado prolifactica + Aplicación de fluor por $1299.00",
+    imagen: "/img_ofertas/promo4.png",
   },
 ];
