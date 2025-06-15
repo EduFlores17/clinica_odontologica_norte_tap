@@ -72,36 +72,68 @@ import { servicios } from "../scripts/servicios.js";
   </swiper-container>
 
   <style>
+  swiper-container::part(button-prev),
+  swiper-container::part(button-next) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.7); /* Fondo blanco semitransparente */
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px); /* Efecto de desenfoque del fondo */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil */
+    transition: all 0.3s ease; /* Transición suave */
+  }
+
+  swiper-container::part(button-prev):hover,
+  swiper-container::part(button-next):hover {
+    background: rgba(255, 255, 255, 0.7); /* Más opaco al hover */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  swiper-container::part(button-prev) {
+    left: 0;
+  }
+
+  swiper-container::part(button-next) {
+    right: 0;
+  }
+
+  @media (max-width: 768px) {
     swiper-container::part(button-prev),
     swiper-container::part(button-next) {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 36px;
+      height: 36px;
     }
+    
     swiper-container::part(button-prev) {
-      left: 0;
+      left: -5px;
     }
+    
     swiper-container::part(button-next) {
-      right: 0;
+      right: -5px;
     }
-    @media (max-width: 768px) {
-      swiper-container::part(button-prev) {
-        left: -5px;
-      }
-      swiper-container::part(button-next) {
-        right: -5px;
-      }
-    }
-  </style>
+  }
+
+  /* Estilo para los iconos dentro de los botones */
+  swiper-container::part(button-prev)::after,
+  swiper-container::part(button-next)::after {
+    color: rgba(0, 119, 182, 0.8); /* Color semitransparente */
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+
+  swiper-container::part(button-prev):hover::after,
+  swiper-container::part(button-next):hover::after {
+    color: #0077b6; /* Color sólido al hover */
+  }
+</style>
 </div>
 
       <!-- CTA -->
