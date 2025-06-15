@@ -1,84 +1,87 @@
 ---
-import Layout from "../layouts/Layout.astro";
+// src/components/Servicios.astro
 import { servicios } from "../scripts/servicios.js";
 ---
 
-<Layout title="Nuestros Servicios">
-  <main class="bg-font4" role="main">
-    <section
-      id="servicios"
-      class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl w-full mx-auto font-display"
-      aria-labelledby="titulo-servicios"
-    >
-      <header class="text-center mb-12">
-        <h2
-          id="titulo-servicios"
-          class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]"
-        >
-          Nuestros Servicios Odontológicos
-        </h2>
-        <p class="text-[var(--color-text2)] max-w-2xl mx-auto text-lg">
-          Ofrecemos tratamientos integrales con tecnología de última generación
-          para cuidar tu salud bucal en todas las etapas de la vida.
-        </p>
-      </header>
-
-      <!-- Swiper con múltiples tarjetas -->
-      <swiper-container
-  slides-per-view="3"
-  space-between="16"
-  navigation="true"
-  pagination="false"
-  autoplay-delay="3000"
-  autoplay-disable-on-interaction="false"
-  breakpoints="{&quot;360&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:16},&quot;640&quot;:{&quot;slidesPerView&quot;:1.2,&quot;spaceBetween&quot;:16},&quot;768&quot;:{&quot;slidesPerView&quot;:2,&quot;spaceBetween&quot;:20},&quot;1024&quot;:{&quot;slidesPerView&quot;:3,&quot;spaceBetween&quot;:24},&quot;1440&quot;:{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:28},&quot;1920&quot;:{&quot;slidesPerView&quot;:5,&quot;spaceBetween&quot;:32}}"
-  class="overflow-visible"
-  style="--swiper-navigation-color: #0077b6;"
-  centeredSlides="true"
->
-  {
-    servicios.map((servicio) => (
-      <swiper-slide aria-label={`Servicio: ${servicio.titulo}`}>
-        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden mx-1 min-h-[440px]">
+<!-- Contenedor principal -->
+<div class="relative py-8 max-w-5xl mx-auto font-display">
+  <!-- Swiper container -->
+  <swiper-container
+    slides-per-view="3"
+    space-between="16"
+    navigation="true"
+    pagination="false"
+    autoplay-delay="3000"
+    autoplay-disable-on-interaction="false"
+    breakpoints='{"360":{"slidesPerView":1,"spaceBetween":16},"640":{"slidesPerView":1,"spaceBetween":16},"768":{"slidesPerView":2,"spaceBetween":20},"1024":{"slidesPerView":3,"spaceBetween":24}}'
+    class="overflow-visible px-4"
+    style="--swiper-navigation-color: #0077b6; --swiper-navigation-size: 24px;"
+  >
+    {servicios.map((servicio) => (
+      <swiper-slide key={servicio.titulo} aria-label={`Servicio: ${servicio.titulo}`}>
+        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[400px] sm:min-h-[440px]">
           <div class="w-full h-44 sm:h-52 overflow-hidden">
             <img 
               src={servicio.imagen} 
               alt={servicio.titulo}
               class="w-full h-full object-cover object-center"
               loading="lazy"
+              width="400"
+              height="300"
             />
           </div>
           <div class="flex flex-col justify-between p-4 flex-grow">
             <div>
-              <h3 class="font-bold text-text1 text-base sm:text-lg mb-2">
+              <h3 class="font-bold text-text1 text-lg mb-2">
                 {servicio.titulo}
               </h3>
-              <p class="text-sm sm:text-base text-text4 leading-snug mb-4 line-clamp-4">
+              <p class="text-text4 leading-snug mb-4 line-clamp-4">
                 {servicio.texto}
               </p>
             </div>
             <a
               href="#contacto"
               class="mt-auto text-sm font-semibold text-font2 hover:underline transition"
+              aria-label={`Más información sobre ${servicio.titulo}`}
             >
               Saber más →
             </a>
           </div>
         </article>
       </swiper-slide>
-    ))
-  }
-</swiper-container>
+    ))}
+  </swiper-container>
 
-      <!-- CTA -->
-      <div class="mt-16 text-center">
-        <a
-          href="#contacto"
-          class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300"
-        >
-          Agendar una cita
-        </a>
-      </div>
-    </section>
-  </main>
-</Layout>
+  <!-- Estilos para las flechas de navegación -->
+  <style>
+    swiper-container::part(button-prev),
+    swiper-container::part(button-next) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    swiper-container::part(button-prev) {
+      left: 0;
+    }
+    swiper-container::part(button-next) {
+      right: 0;
+    }
+    @media (max-width: 768px) {
+      swiper-container::part(button-prev) {
+        left: -5px;
+      }
+      swiper-container::part(button-next) {
+        right: -5px;
+      }
+    }
+  </style>
+</div>
