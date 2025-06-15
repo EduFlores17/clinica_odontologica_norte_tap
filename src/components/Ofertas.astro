@@ -13,26 +13,30 @@ import { ofertas } from '../scripts/ofertas.js';
       loop="true"
       pagination="true"
       navigation="true"
-      autoplay-delay="2000"
+      autoplay-delay="3000"
       autoplay-disable-on-interaction="false"
-      class="rounded-xl overflow-hidden shadow-xl"
+      class="rounded-xl shadow-xl"
       style="--swiper-pagination-color: white; --swiper-navigation-color: white;"
     >
       {
         ofertas.map((oferta) => (
           <swiper-slide aria-label={`Oferta: ${oferta.titulo}`}>
-            <article class="flex flex-col h-full">
-              <div class="relative w-full h-[50vh] min-h-[300px] sm:h-[450px] overflow-hidden">
+            <article class="flex flex-col h-full bg-white"> <!-- Fondo blanco para todo el artículo -->
+              <!-- Contenedor de imagen ajustado sin espacios -->
+              <div class="flex-1 flex items-center justify-center p-0"> <!-- Elimina márgenes internos -->
                 <img 
                   src={oferta.imagen} 
                   alt={`Promoción: ${oferta.titulo}`} 
-                  class="w-full h-full object-contain sm:object-cover object-center bg-white" 
-                  loading="lazy" 
+                  class="w-full h-auto max-h-[200] object-contain" 
+                  loading="lazy"
                 />
               </div>
-              <div class="bg-font2 text-white py-4 sm:py-6 text-center z-10 relative">
-                <h3 class="text-lg sm:text-xl font-semibold">{oferta.titulo}</h3>
-                <p class="text-sm sm:text-base">{oferta.descripcion}</p>
+              <!-- Marco azul que se ajusta al contenido -->
+              <div class="bg-font2 text-white p-4 sm:p-6 text-center w-full">
+                <div class="mx-auto max-w-md"> <!-- Contenedor para el texto -->
+                  <h3 class="text-lg sm:text-xl font-semibold mb-2">{oferta.titulo}</h3>
+                  <p class="text-sm sm:text-base">{oferta.descripcion}</p>
+                </div>
               </div>
             </article>
           </swiper-slide>
