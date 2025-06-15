@@ -23,119 +23,90 @@ import { servicios } from "../scripts/servicios.js";
         </p>
       </header>
 
-      <!-- Swiper con múltiples tarjetas -->
-    <!-- Swiper container -->
-  <swiper-container
-    slides-per-view="3"
-    space-between="16"
-    navigation="true"
-    pagination="false"
-    autoplay-delay="3000"
-    autoplay-disable-on-interaction="false"
-    breakpoints='{"360":{"slidesPerView":1,"spaceBetween":16},"640":{"slidesPerView":1,"spaceBetween":16},"768":{"slidesPerView":2,"spaceBetween":20},"1024":{"slidesPerView":3,"spaceBetween":24}}'
-    class="overflow-visible px-4"
-    style="--swiper-navigation-color: #0077b6; --swiper-navigation-size: 24px;"
-  >
-    {servicios.map((servicio) => (
-      <swiper-slide key={servicio.titulo} aria-label={`Servicio: ${servicio.titulo}`}>
-        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[450px] sm:min-h-[440px]">
-          <div class="w-full h-44 sm:h-52 overflow-hidden">
-            <img 
-              src={servicio.imagen} 
-              alt={servicio.titulo}
-              class="w-full h-full object-cover object-center"
-              loading="lazy"
-              width="400"
-              height="300"
-            />
-          </div>
-          <div class="flex flex-col justify-between p-4 flex-grow">
-            <div>
-              <h3 class="font-bold text-text1 text-lg mb-2">
-                {servicio.titulo}
-              </h3>
-              <p class="text-text4 leading-snug mb-4 line-clamp-4">
-                {servicio.texto}
-              </p>
+      <!-- Versión móvil (Slider) -->
+      <div class="lg:hidden">
+        <swiper-container
+          slides-per-view="1"
+          space-between="16"
+          pagination="true"
+          class="overflow-visible px-4"
+        >
+          {servicios.map((servicio) => (
+            <swiper-slide key={servicio.titulo} aria-label={`Servicio: ${servicio.titulo}`}>
+              <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[450px]">
+                <div class="w-full h-44 sm:h-52 overflow-hidden">
+                  <img 
+                    src={servicio.imagen} 
+                    alt={servicio.titulo}
+                    class="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    width="400"
+                    height="300"
+                  />
+                </div>
+                <div class="flex flex-col justify-between p-4 flex-grow">
+                  <div>
+                    <h3 class="font-bold text-text1 text-lg mb-2">
+                      {servicio.titulo}
+                    </h3>
+                    <p class="text-text4 leading-snug mb-4 line-clamp-4">
+                      {servicio.texto}
+                    </p>
+                  </div>
+                  <a
+                    href="#contacto"
+                    class="mt-auto text-sm font-semibold text-font2 hover:underline transition"
+                    aria-label={`Más información sobre ${servicio.titulo}`}
+                  >
+                    Saber más →
+                  </a>
+                </div>
+              </article>
+            </swiper-slide>
+          ))}
+        </swiper-container>
+      </div>
+
+      <!-- Versión desktop (Grid de 3 columnas) -->
+      <div class="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicios.map((servicio) => (
+          <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[440px]">
+            <div class="w-full h-52 overflow-hidden">
+              <img 
+                src={servicio.imagen} 
+                alt={servicio.titulo}
+                class="w-full h-full object-cover object-center"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
             </div>
-            <a
-              href="#contacto"
-              class="mt-auto text-sm font-semibold text-font2 hover:underline transition"
-              aria-label={`Más información sobre ${servicio.titulo}`}
-            >
-              Saber más →
-            </a>
-          </div>
-        </article>
-      </swiper-slide>
-    ))}
-  </swiper-container>
-
-  <style>
-  swiper-container::part(button-prev),
-  swiper-container::part(button-next) {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1); /* Transparencia constante al 50% */
-    border-radius: 50%;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Sombra muy sutil */
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(2px);
-    border: none;
-    opacity: 1; /* Siempre visible */
-    transition: none; /* Sin transiciones */
-  }
-
-  swiper-container::part(button-prev) {
-    left: 0;
-  }
-
-  swiper-container::part(button-next) {
-    right: 0;
-  }
-
-  /* Iconos de las flechas */
-  swiper-container::part(button-prev)::after,
-  swiper-container::part(button-next)::after {
-    color: rgba(0, 119, 182, 0.2); /* Color con transparencia */
-    font-size: 20px;
-  }
-
-  @media (max-width: 768px) {
-    swiper-container::part(button-prev),
-    swiper-container::part(button-next) {
-      width: 34px;
-      height: 34px;
-      background: rgba(255, 255, 255, 0.1); /* Un poco más visible en móvil */
-    }
-    
-    swiper-container::part(button-prev) {
-      left: -5px;
-    }
-    
-    swiper-container::part(button-next) {
-      right: -5px;
-    }
-    
-    swiper-container::part(button-prev)::after,
-    swiper-container::part(button-next)::after {
-      font-size: 18px;
-    }
-  }
-</style>
-</div>
+            <div class="flex flex-col justify-between p-4 flex-grow">
+              <div>
+                <h3 class="font-bold text-text1 text-lg mb-2">
+                  {servicio.titulo}
+                </h3>
+                <p class="text-text4 leading-snug mb-4 line-clamp-4">
+                  {servicio.texto}
+                </p>
+              </div>
+              <a
+                href="#contacto"
+                class="mt-auto text-sm font-semibold text-font2 hover:underline transition"
+                aria-label={`Más información sobre ${servicio.titulo}`}
+              >
+                Saber más →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
 
       <!-- CTA -->
       <div class="mt-16 text-center">
         <a
           href="#contacto"
-          class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300 mb-7"
+          class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300"
         >
           Agendar una cita
         </a>
