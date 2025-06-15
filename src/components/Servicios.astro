@@ -38,7 +38,7 @@ import { servicios } from "../scripts/servicios.js";
   >
     {servicios.map((servicio) => (
       <swiper-slide key={servicio.titulo} aria-label={`Servicio: ${servicio.titulo}`}>
-        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[500px] sm:min-h-[440px]">
+        <article class="h-full flex flex-col bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden min-h-[450px] sm:min-h-[440px]">
           <div class="w-full h-44 sm:h-52 overflow-hidden">
             <img 
               src={servicio.imagen} 
@@ -135,7 +135,7 @@ import { servicios } from "../scripts/servicios.js";
       <div class="mt-16 text-center">
         <a
           href="#contacto"
-          class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300"
+          class="inline-block rounded-full bg-[var(--color-font2)] hover:bg-[var(--color-font3)]/90 text-white font-semibold py-3 px-8 transition duration-300 mb-7"
         >
           Agendar una cita
         </a>
