@@ -1,6 +1,6 @@
 ---
 const fondoHero = "";
-const paciente = "/n.jpg";
+const paciente = "/dentista1.jpg";
 ---
 
 <section
@@ -9,19 +9,37 @@ const paciente = "/n.jpg";
   aria-label="Sección principal con mensaje de bienvenida"
 >
   <div
-    class="max-w-5xl w-full flex flex-col md:flex-row items-center justify-between gap-8"
+    class="max-w-5xl w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-8"
   >
     <!-- Texto -->
-    <div class="text-white max-w-xl text-center md:text-left">
-      <h1
-        class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4"
-      >
-        Tu sonrisa, nuestra <span class="text-hover2">prioridad</span>.
-      </h1>
-      <p class="text-sm sm:text-base md:text-lg font-medium">
+    <div class="text-white max-w-xl text-center lg:text-left">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+  Tu sonrisa, nuestra 
+  <span class="text-font3 drop-shadow-[0_1px_10px_white]">prioridad</span>.
+</h1>
+
+      <p class="text-sm sm:text-base md:text-lg font-medium mb-6">
         Transformamos sonrisas con los tratamientos dentales estéticos<br />
         más avanzados y personalizados para ti.
       </p>
+
+      <!-- Botones -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <a
+          href="#contacto"
+          class="bg-white text-font2 font-semibold py-3 px-6 rounded-full shadow hover:bg-gray-100 transition"
+          aria-label="Ir a contacto"
+        >
+          Contacto
+        </a>
+        <a
+          href="#servicios"
+          class="bg-font3 text-font1 font-semibold py-3 px-6 rounded-full shadow hover:bg-font1 hover:text-font2 transition"
+          aria-label="Ir a servicios"
+        >
+          Servicios
+        </a>
+      </div>
     </div>
 
     <!-- Imagen -->
