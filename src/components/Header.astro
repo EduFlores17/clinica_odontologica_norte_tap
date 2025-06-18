@@ -114,8 +114,22 @@
     const menuButton = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
-    if (!menuButton || !mobileMenu) return; // seguridad: si no existen, salimos
+    if (!menuButton || !mobileMenu) return;
 
+    // Lógica para abrir/cerrar el menú hamburguesa
+    menuButton.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.toggle("hidden");
+      menuButton.setAttribute("aria-expanded", isHidden ? "false" : "true");
+
+      const icon = menuButton.querySelector("svg");
+      if (icon) {
+        icon.innerHTML = isHidden
+          ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>'
+          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+      }
+    });
+
+    // Enlaces del menú móvil con scroll corregido
     const mobileLinks = mobileMenu.querySelectorAll('a[href^="#"]');
 
     mobileLinks.forEach(link => {
@@ -131,16 +145,15 @@
         mobileMenu.classList.add("hidden");
         menuButton.setAttribute("aria-expanded", "false");
 
-        // Cambia el ícono a hamburguesa (opcional, si ya tienes lógica)
         const icon = menuButton.querySelector("svg");
         if (icon) {
           icon.innerHTML =
             '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
         }
 
-        // Espera a que se oculte el menú y luego hace scroll
+        // Scroll con compensación
         setTimeout(() => {
-          const offset = 96; // ajusta según tu header
+          const offset = 96; // ajusta a la altura de tu header
           const y = targetEl.getBoundingClientRect().top + window.scrollY - offset;
           window.scrollTo({ top: y, behavior: "smooth" });
         }, 100);
