@@ -1,91 +1,106 @@
 ---
 const mostrar = typeof window !== "undefined" && window.location.search.includes("encuesta=1");
+let paso = mostrar ? 1 : 0;
 ---
 
-{mostrar && (
-  <div id="modalEncuesta" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-lg relative mx-4 sm:mx-0">
+{mostrar && paso > 0 && (
+  <div id="modal-encuesta" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+    <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-lg mx-4	sm:mx-0 relative">
       <button id="cerrarEncuesta" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">✕</button>
-      <h2 class="text-xl font-bold mb-4 text-font2 text-center">¿Cómo estuvo tu servicio?</h2>
-      <form id="formEncuesta" class="space-y-4">
-        <div>
-          <label class="block mb-1 text-sm font-medium">Tu nombre</label>
-          <input type="text" name="nombre" required class="w-full border rounded p-2" />
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium">Servicio recibido</label>
-          <input type="text" name="servicio" required class="w-full border rounded p-2" />
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium">Calificación</label>
-          <select name="estrellas" required class="w-full border rounded p-2">
-            <option value="5">★★★★★ - Excelente</option>
-            <option value="4">★★★★☆ - Muy bueno</option>
-            <option value="3">★★★☆☆ - Bueno</option>
-            <option value="2">★★☆☆☆ - Regular</option>
-            <option value="1">★☆☆☆☆ - Malo</option>
-          </select>
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium">Foto (opcional)</label>
-          <input type="file" accept="image/*" name="foto" class="w-full" />
-        </div>
-        <div>
-          <label class="block mb-1 text-sm font-medium">Reseña</label>
-          <textarea name="texto" required rows="3" class="w-full border rounded p-2"></textarea>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="bg-font2 text-white px-5 py-2 rounded-full hover:bg-hover2 transition">Enviar reseña</button>
-        </div>
-      </form>
+
+      {paso === 1 && (
+        <>
+          <h2 class="text-xl font-bold mb-4 text-font2 text-center">¿Deseas responder una encuesta sobre tu servicio?</h2>
+          <div class="flex justify-center gap-4">
+            <button id="btnAceptar" class="bg-font2 text-white px-5 py-2 rounded-full hover:bg-hover2 transition">Sí</button>
+            <button id="btnRechazar" class="bg-gray-300 text-black px-5 py-2 rounded-full hover:bg-gray-400 transition">No</button>
+          </div>
+        </>
+      )}
+
+      {paso === 2 && (
+        <form id="formEncuesta" class="space-y-4 mt-2">
+          <label class="block"><span class="font-medium">Tu nombre</span><input name="nombre" type="text" required class="w-full border rounded p-2 mt-1" /></label>
+
+          <label class="block"><span class="font-medium">Servicio recibido</span><input name="servicio" type="text" required class="w-full border rounded p-2 mt-1" /></label>
+
+          <label class="block"><span class="font-medium">Calificación</span>
+            <select name="estrellas" required class="w-full border rounded p-2 mt-1">
+              <option value="5">★★★★★</option>
+              <option value="4">★★★★☆</option>
+              <option value="3">★★★☆☆</option>
+              <option value="2">★★☆☆☆</option>
+              <option value="1">★☆☆☆☆</option>
+            </select>
+          </label>
+
+          <label class="block"><span class="font-medium">Foto (opcional)</span><input name="foto" type="file" accept="image/*" class="w-full mt-1" /></label>
+
+          <label class="block"><span class="font-medium">Tu reseña</span><textarea name="texto" required class="w-full border rounded p-2 mt-1"></textarea></label>
+
+          <div class="flex gap-2 justify-end">
+            <button type="submit" class="bg-font2 text-white px-4 py-2 rounded-full">Enviar</button>
+            <button type="button" id="cancelarForm" class="bg-gray-300 text-black px-4 py-2 rounded-full">Cancelar</button>
+          </div>
+        </form>
+      )}
     </div>
   </div>
 )}
 
 <script is:inline>
-  const form = document.getElementById('formEncuesta');
-  const cerrar = document.getElementById('cerrarEncuesta');
-  const modal = document.getElementById('modalEncuesta');
+  const modal = document.getElementById("modal-encuesta");
+  const btnAceptar = document.getElementById("btnAceptar");
+  const btnRechazar = document.getElementById("btnRechazar");
+  const closeBtn = document.getElementById("cerrarEncuesta");
+  const cancelarBtn = document.getElementById("cancelarForm");
+  const form = document.getElementById("formEncuesta");
 
-  cerrar?.addEventListener('click', () => {
+  btnRechazar?.addEventListener("click", () => {
     modal?.remove();
-    const url = new URL(window.location);
-    url.searchParams.delete("encuesta");
-    window.history.replaceState({}, "", url);
+    history.replaceState({}, "", location.pathname);
   });
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  closeBtn?.addEventListener("click", () => {
+    modal?.remove();
+    history.replaceState({}, "", location.pathname);
+  });
 
+  btnAceptar?.addEventListener("click", () => {
+    paso = 2;
+    document.querySelector("#modal-encuesta form").style.display = "block";
+    document.getElementById("btnAceptar").closest("div").style.display = "none";
+  });
+
+  cancelarBtn?.addEventListener("click", () => {
+    modal?.remove();
+    history.replaceState({}, "", location.pathname);
+  });
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
     const data = new FormData(form);
     const nombre = data.get("nombre");
     const servicio = data.get("servicio");
-    const estrellas = parseInt(data.get("estrellas"));
+    const estrellas = parseInt(data.get("estrellas") || "5");
     const texto = data.get("texto");
-
     const archivo = data.get("foto");
-    let foto = "/img_opiniones/default.jpg";
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const prev = JSON.parse(localStorage.getItem("reseñasExtra") || "[]");
+      prev.push({ nombre, servicio, estrellas, texto, foto: reader.result });
+      localStorage.setItem("reseñasExtra", JSON.stringify(prev));
+      alert("¡Gracias por tu reseña!");
+      modal?.remove();
+      history.replaceState({}, "", location.pathname + "#opiniones");
+      location.reload();
+    };
 
     if (archivo && archivo.size > 0) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        foto = event.target.result;
-
-        guardarOpinion({ nombre, servicio, estrellas, texto, foto });
-      };
       reader.readAsDataURL(archivo);
     } else {
-      guardarOpinion({ nombre, servicio, estrellas, texto, foto });
-    }
-
-    function guardarOpinion(opinion) {
-      const prev = JSON.parse(localStorage.getItem("reseñasExtra") || "[]");
-      prev.push(opinion);
-      localStorage.setItem("reseñasExtra", JSON.stringify(prev));
-
-      alert("¡Gracias por tu reseña!");
-      window.location.href = "#opiniones";
-      modal?.remove();
+      reader.onload();
     }
   });
 </script>
