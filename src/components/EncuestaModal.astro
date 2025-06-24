@@ -1,0 +1,91 @@
+---
+const mostrar = typeof window !== "undefined" && window.location.search.includes("encuesta=1");
+---
+
+{mostrar && (
+  <div id="modalEncuesta" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-lg relative mx-4 sm:mx-0">
+      <button id="cerrarEncuesta" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">✕</button>
+      <h2 class="text-xl font-bold mb-4 text-font2 text-center">¿Cómo estuvo tu servicio?</h2>
+      <form id="formEncuesta" class="space-y-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium">Tu nombre</label>
+          <input type="text" name="nombre" required class="w-full border rounded p-2" />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Servicio recibido</label>
+          <input type="text" name="servicio" required class="w-full border rounded p-2" />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Calificación</label>
+          <select name="estrellas" required class="w-full border rounded p-2">
+            <option value="5">★★★★★ - Excelente</option>
+            <option value="4">★★★★☆ - Muy bueno</option>
+            <option value="3">★★★☆☆ - Bueno</option>
+            <option value="2">★★☆☆☆ - Regular</option>
+            <option value="1">★☆☆☆☆ - Malo</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Foto (opcional)</label>
+          <input type="file" accept="image/*" name="foto" class="w-full" />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Reseña</label>
+          <textarea name="texto" required rows="3" class="w-full border rounded p-2"></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="bg-font2 text-white px-5 py-2 rounded-full hover:bg-hover2 transition">Enviar reseña</button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+<script is:inline>
+  const form = document.getElementById('formEncuesta');
+  const cerrar = document.getElementById('cerrarEncuesta');
+  const modal = document.getElementById('modalEncuesta');
+
+  cerrar?.addEventListener('click', () => {
+    modal?.remove();
+    const url = new URL(window.location);
+    url.searchParams.delete("encuesta");
+    window.history.replaceState({}, "", url);
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const nombre = data.get("nombre");
+    const servicio = data.get("servicio");
+    const estrellas = parseInt(data.get("estrellas"));
+    const texto = data.get("texto");
+
+    const archivo = data.get("foto");
+    let foto = "/img_opiniones/default.jpg";
+
+    if (archivo && archivo.size > 0) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        foto = event.target.result;
+
+        guardarOpinion({ nombre, servicio, estrellas, texto, foto });
+      };
+      reader.readAsDataURL(archivo);
+    } else {
+      guardarOpinion({ nombre, servicio, estrellas, texto, foto });
+    }
+
+    function guardarOpinion(opinion) {
+      const prev = JSON.parse(localStorage.getItem("reseñasExtra") || "[]");
+      prev.push(opinion);
+      localStorage.setItem("reseñasExtra", JSON.stringify(prev));
+
+      alert("¡Gracias por tu reseña!");
+      window.location.href = "#opiniones";
+      modal?.remove();
+    }
+  });
+</script>
