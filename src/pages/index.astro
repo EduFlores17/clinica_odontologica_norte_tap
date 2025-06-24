@@ -9,6 +9,8 @@ import Contacto from '../components/Contacto.astro';
 import Nosotros from '../components/Nosotros.astro';
 import Footer from '../components/Footer.astro';
 import Galeria from '../components/Galeria.astro';
+
+import EncuestaModal from "../components/EncuestaModal.astro";
 // Importa otros componentes...
 ---
 
@@ -24,4 +26,5 @@ import Galeria from '../components/Galeria.astro';
     <Contacto />
   </main>
   <Footer />
+  <EncuestaModal client:load />
 </Layout>

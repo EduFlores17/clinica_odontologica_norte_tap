@@ -1,24 +1,22 @@
 ---
-const mostrar = typeof window !== "undefined" && window.location.search.includes("encuesta=1");
-let paso = mostrar ? 1 : 0;
+const isClient = typeof window !== "undefined";
+const mostrar = isClient && window.location.search.includes("encuesta=1");
 ---
 
-{mostrar && paso > 0 && (
+{isClient && mostrar && (
   <div id="modal-encuesta" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-    <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-lg mx-4	sm:mx-0 relative">
+    <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-lg mx-4 sm:mx-0 relative">
       <button id="cerrarEncuesta" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">✕</button>
 
-      {paso === 1 && (
-        <>
-          <h2 class="text-xl font-bold mb-4 text-font2 text-center">¿Deseas responder una encuesta sobre tu servicio?</h2>
-          <div class="flex justify-center gap-4">
-            <button id="btnAceptar" class="bg-font2 text-white px-5 py-2 rounded-full hover:bg-hover2 transition">Sí</button>
-            <button id="btnRechazar" class="bg-gray-300 text-black px-5 py-2 rounded-full hover:bg-gray-400 transition">No</button>
-          </div>
-        </>
-      )}
+      <div id="paso1" style={{ display: 'block' }}>
+        <h2 class="text-xl font-bold mb-4 text-font2 text-center">¿Deseas responder una encuesta sobre tu servicio?</h2>
+        <div class="flex justify-center gap-4">
+          <button id="btnAceptar" class="bg-font2 text-white px-5 py-2 rounded-full hover:bg-hover2 transition">Sí</button>
+          <button id="btnRechazar" class="bg-gray-300 text-black px-5 py-2 rounded-full hover:bg-gray-400 transition">No</button>
+        </div>
+      </div>
 
-      {paso === 2 && (
+      <div id="paso2" style={{ display: 'none' }}>
         <form id="formEncuesta" class="space-y-4 mt-2">
           <label class="block"><span class="font-medium">Tu nombre</span><input name="nombre" type="text" required class="w-full border rounded p-2 mt-1" /></label>
 
@@ -43,64 +41,73 @@ let paso = mostrar ? 1 : 0;
             <button type="button" id="cancelarForm" class="bg-gray-300 text-black px-4 py-2 rounded-full">Cancelar</button>
           </div>
         </form>
-      )}
+      </div>
     </div>
   </div>
 )}
 
 <script is:inline>
-  const modal = document.getElementById("modal-encuesta");
-  const btnAceptar = document.getElementById("btnAceptar");
-  const btnRechazar = document.getElementById("btnRechazar");
-  const closeBtn = document.getElementById("cerrarEncuesta");
-  const cancelarBtn = document.getElementById("cancelarForm");
-  const form = document.getElementById("formEncuesta");
+  if (typeof window !== "undefined") {
+    let paso = 1; // Declarar paso en el cliente
 
-  btnRechazar?.addEventListener("click", () => {
-    modal?.remove();
-    history.replaceState({}, "", location.pathname);
-  });
+    const modal = document.getElementById("modal-encuesta");
+    const btnAceptar = document.getElementById("btnAceptar");
+    const btnRechazar = document.getElementById("btnRechazar");
+    const closeBtn = document.getElementById("cerrarEncuesta");
+    const cancelarBtn = document.getElementById("cancelarForm");
+    const form = document.getElementById("formEncuesta");
 
-  closeBtn?.addEventListener("click", () => {
-    modal?.remove();
-    history.replaceState({}, "", location.pathname);
-  });
-
-  btnAceptar?.addEventListener("click", () => {
-    paso = 2;
-    document.querySelector("#modal-encuesta form").style.display = "block";
-    document.getElementById("btnAceptar").closest("div").style.display = "none";
-  });
-
-  cancelarBtn?.addEventListener("click", () => {
-    modal?.remove();
-    history.replaceState({}, "", location.pathname);
-  });
-
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const nombre = data.get("nombre");
-    const servicio = data.get("servicio");
-    const estrellas = parseInt(data.get("estrellas") || "5");
-    const texto = data.get("texto");
-    const archivo = data.get("foto");
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const prev = JSON.parse(localStorage.getItem("reseñasExtra") || "[]");
-      prev.push({ nombre, servicio, estrellas, texto, foto: reader.result });
-      localStorage.setItem("reseñasExtra", JSON.stringify(prev));
-      alert("¡Gracias por tu reseña!");
+    // Rechazar la encuesta
+    btnRechazar?.addEventListener("click", () => {
       modal?.remove();
-      history.replaceState({}, "", location.pathname + "#opiniones");
-      location.reload();
-    };
+      history.replaceState({}, "", location.pathname);
+    });
 
-    if (archivo && archivo.size > 0) {
-      reader.readAsDataURL(archivo);
-    } else {
-      reader.onload();
-    }
-  });
+    // Cerrar el modal
+    closeBtn?.addEventListener("click", () => {
+      modal?.remove();
+      history.replaceState({}, "", location.pathname);
+    });
+
+    // Aceptar encuesta
+    btnAceptar?.addEventListener("click", () => {
+      paso = 2; // Cambiamos el paso a 2
+      document.getElementById("paso1").style.display = "none";
+      document.getElementById("paso2").style.display = "block";
+    });
+
+    // Cancelar formulario
+    cancelarBtn?.addEventListener("click", () => {
+      modal?.remove();
+      history.replaceState({}, "", location.pathname);
+    });
+
+    // Enviar la encuesta
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const nombre = data.get("nombre");
+      const servicio = data.get("servicio");
+      const estrellas = parseInt(data.get("estrellas") || "5");
+      const texto = data.get("texto");
+      const archivo = data.get("foto");
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const prev = JSON.parse(localStorage.getItem("reseñasExtra") || "[]");
+        prev.push({ nombre, servicio, estrellas, texto, foto: reader.result });
+        localStorage.setItem("reseñasExtra", JSON.stringify(prev));
+        alert("¡Gracias por tu reseña!");
+        modal?.remove();
+        history.replaceState({}, "", location.pathname + "#opiniones");
+        location.reload();
+      };
+
+      if (archivo && archivo.size > 0) {
+        reader.readAsDataURL(archivo);
+      } else {
+        reader.onload();
+      }
+    });
+  }
 </script>
