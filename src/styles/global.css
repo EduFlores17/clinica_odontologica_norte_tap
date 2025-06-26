@@ -30,3 +30,8 @@ html {
 section {
   padding-top: 7.5rem; /* Ajusta el valor según el tamaño de tu encabezado */
 }
+
+
+section.no-pt {
+  padding-top: 3.5rem; /* Ajusta el valor según el tamaño de tu encabezado */
+}

@@ -8,20 +8,17 @@ import { doctores } from "../scripts/doctores.js";
 <Layout>
   <Header />
 
-  <!-- Reduje el padding vertical y el espacio entre secciones -->
-  <main class="px-4 py-10 md:py-14 space-y-12 md:space-y-14 font-display bg-gray-50">
-    <!-- Sección combinada mejorada -->
-    <section class="max-w-5xl mx-auto">
-      <!-- Reduje el margin-bottom del título -->
-      <h2 class="text-4xl md:text-5xl font-bold text-font2 text-center mb-8 md:mb-10">
+  <main class="px-4 pt-4 pb-10 md:pt-6 md:pb-14 space-y-12 md:space-y-14 font-display bg-[#F4FAFF]">
+    <section class="max-w-5xl mx-auto no-pt">
+      <h2 class="text-4xl md:text-5xl font-bold text-font2 text-center mb-10">
         Nuestro equipo médico
       </h2>
 
-      <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-        <!-- Galería de doctores simplificada -->
+      <div class="flex flex-col lg:flex-row gap-10">
+        <!-- Galería de doctores -->
         <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
           {doctores.map((doctor) => (
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200">
               <div class="relative overflow-hidden h-64">
                 <img 
                   src={doctor.imagen} 
@@ -32,17 +29,15 @@ import { doctores } from "../scripts/doctores.js";
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
-              <div class="p-6">
-                <div>
-                  <h3 class="text-xl md:text-2xl font-bold text-font2 mb-1">{doctor.nombre}</h3>
-                  <p class="text-sm md:text-base text-font3 mb-3">{doctor.especialidad}</p>
-                  <p class="text-xs text-gray-500">Cédula profesional: {doctor.cedula}</p>
-                </div>
+              <div class="p-5">
+                <h3 class="text-xl md:text-2xl font-bold text-font2 mb-1">{doctor.nombre}</h3>
+                <p class="text-sm md:text-base text-text1 mb-3">{doctor.especialidad}</p>
+                <p class="text-xs text-text3">Cédula profesional: {doctor.cedula}</p>
                 
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                  <button class="text-sm font-medium text-font2 hover:text-font3 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                  <button class="text-sm font-medium text-font2 hover:text-hover2 transition-colors flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.293 15.707a1 1 0 010-1.414L13.586 11H5a1 1 0 110-2h8.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"/>
                     </svg>
                     Ver perfil completo
                   </button>
@@ -52,56 +47,47 @@ import { doctores } from "../scripts/doctores.js";
           ))}
         </div>
 
-        <!-- Video de instalaciones -->
-        <div class="w-full lg:w-1/3 sticky top-6">
-          <div class="relative aspect-video lg:aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-2xl bg-black border-4 border-white">
-            <video 
-              src="/clinica.mp4" 
-              autoplay
-              muted
-              loop
-              playsinline
-              class="w-full h-full object-cover"
-              poster="/clinica-poster.jpg" 
-            ></video>
-            
-            <!-- Controles personalizados -->
-            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center">
-              <div>
-                <h3 class="text-xl font-bold text-white mb-1">Nuestras instalaciones</h3>
-                <p class="text-sm text-white/80">Clínica equipada con tecnología de vanguardia</p>
+        <!-- Contenedor del video con sticky -->
+        <div class="w-full lg:w-1/3">
+          <div class="sticky top-6 space-y-6" id="videoSidebar">
+            <!-- Video -->
+            <div class="relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-xl bg-black border-4 border-white">
+
+              <video
+                id="videoClinica"
+                src="/clinica.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                class="w-full h-full object-cover"
+                poster="/clinica-poster.jpg">
+              </video>
+              
+              <!-- Controles del video -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent flex justify-between items-center">
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">Nuestras instalaciones</h3>
+                  <p class="text-sm text-white/80">Tecnología y comodidad a tu servicio</p>
+                </div>
+                <button id="unmuteBtn" class="bg-white/10 text-white p-2 rounded-full hover:bg-white/20 transition">
+                  <svg id="soundIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                    <path id="muteLines" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
+                  </svg>
+                </button>
               </div>
-              <button id="unmuteBtn" class="bg-white/20 text-white p-2 rounded-full hover:bg-white/30 transition">
-                <svg id="soundIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" />
-                  <path id="soundMute" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                </svg>
-              </button>
             </div>
-          </div>
-          
-          <div class="mt-6 bg-white rounded-2xl p-6 shadow-lg">
-            <h3 class="text-xl font-bold text-font2 mb-3">Tecnología de punta</h3>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-font2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Equipos digitales de última generación</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-font2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Sistema de esterilización avanzado</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-font2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Sala de espera premium</span>
-              </li>
-            </ul>
+
+            <!-- Sección de tecnología -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-font2 mb-3">Tecnología de punta</h3>
+              <ul class="space-y-3 text-text1">
+                <li class="flex items-start gap-3"><span class="text-font2">•</span> Equipos digitales de última generación</li>
+                <li class="flex items-start gap-3"><span class="text-font2">•</span> Sistema de esterilización avanzado</li>
+                <li class="flex items-start gap-3"><span class="text-font2">•</span> Sala de espera premium</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -111,25 +97,45 @@ import { doctores } from "../scripts/doctores.js";
   <Footer />
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const video = document.querySelector('video');
-      const unmuteBtn = document.getElementById('unmuteBtn');
-      
-      if (!video || !unmuteBtn) return;
+    document.addEventListener("DOMContentLoaded", () => {
+      // Control de sonido con verificación de tipos
+      const video = document.getElementById("videoClinica");
+      const unmuteBtn = document.getElementById("unmuteBtn");
+      const muteLines = document.getElementById("muteLines");
 
-      const soundMute = document.getElementById('soundMute');
-      
-      // Configuración inicial
-      video.muted = true;
-      if (soundMute) soundMute.style.display = 'none';
-
-      unmuteBtn.addEventListener('click', () => {
-        video.muted = !video.muted;
+      // Verificar que los elementos son del tipo correcto
+      if (video instanceof HTMLVideoElement && 
+          unmuteBtn instanceof HTMLElement && 
+          muteLines instanceof SVGPathElement) {
         
-        if (soundMute) {
-          soundMute.style.display = video.muted ? 'none' : 'block';
-        }
-      });
+        // Configuración inicial
+        video.muted = true;
+        muteLines.style.display = "none";
+
+        // Control de mute/unmute
+        unmuteBtn.addEventListener("click", () => {
+          video.muted = !video.muted;
+          muteLines.style.display = video.muted ? "none" : "block";
+        });
+      }
+
+      // Sticky responsive
+      const videoSidebar = document.getElementById("videoSidebar");
+      if (videoSidebar instanceof HTMLElement) {
+        const updateSticky = () => {
+          if (window.innerWidth < 1024) {
+            videoSidebar.classList.remove("sticky", "top-6");
+            videoSidebar.classList.add("relative");
+          } else {
+            videoSidebar.classList.add("sticky", "top-6");
+            videoSidebar.classList.remove("relative");
+          }
+        };
+
+        // Inicializar y configurar el event listener
+        updateSticky();
+        window.addEventListener("resize", updateSticky);
+      }
     });
   </script>
 </Layout>

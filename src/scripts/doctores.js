@@ -4,7 +4,7 @@ export const doctores = [
     nombre: "Dr. Jordi Lopez",
     especialidad: "Especialista en ortodoncia",
     cedula: "12345678",
-    imagen: "/img_doctores/doctor1.jpeg"
+    imagen: "/img_doctores/doctor7.png"
   },
   {
     id: 2,
