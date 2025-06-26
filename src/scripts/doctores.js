@@ -11,7 +11,7 @@ export const doctores = [
     nombre: "Dr. Jonathan Sanchez",
     especialidad: "Implantología dental",
     cedula: "87654321",
-    imagen: "/img_doctores/doctor2.jpeg"
+    imagen: "/img_doctores/doctor1.png"
   },
   {
     id: 3,
@@ -25,20 +25,20 @@ export const doctores = [
     nombre: "Dr. Luis Gómez",
     especialidad: "Cirugía maxilofacial",
     cedula: "34567890",
-    imagen: "/img_doctores/doctor4.jpeg"
+    imagen: "/img_doctores/doctor4.jpg"
   },
   {
     id: 5,
     nombre: "Dra. Alejandra Ruiz",
     especialidad: "Odontopediatría",
     cedula: "45678901",
-    imagen: "/img_doctores/doctor5.jpeg"
+    imagen: "/img_doctores/doctor5.jpg"
   },
   {
     id: 6,
     nombre: "Dr. Enrique Morales",
     especialidad: "Periodoncia",
     cedula: "56789012",
-    imagen: "/img_doctores/doctor6.jpeg"
+    imagen: "/img_doctores/doctor6.jpg"
   }
 ];
