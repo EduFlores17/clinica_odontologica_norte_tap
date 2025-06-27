@@ -50,14 +50,16 @@
   </nav>
 </header>
 
+<!-- SCRIPT: Hamburguesa + scroll suave + cierre de menú -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
+    const header = document.querySelector("header");
 
-    if (!menuButton || !mobileMenu) return;
+    if (!menuButton || !mobileMenu || !header) return;
 
-    // Abrir/cerrar menú hamburguesa
+    // Menú hamburguesa toggle
     menuButton.addEventListener("click", () => {
       const isHidden = mobileMenu.classList.toggle("hidden");
       menuButton.setAttribute("aria-expanded", isHidden ? "false" : "true");
@@ -69,5 +71,35 @@
           : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
       }
     });
+
+    // Scroll suave con compensación de header
+    document.querySelectorAll('a[href^="/#"]').forEach(link => {
+      link.addEventListener("click", e => {
+        const href = link.getAttribute("href");
+        if (!href) return;
+
+        const targetId = href.replace("/#", "#");
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        e.preventDefault();
+
+        const headerOffset = header.offsetHeight;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+
+        // Cierra menú móvil si está abierto
+        if (!mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          menuButton.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
   });
 </script>
+
