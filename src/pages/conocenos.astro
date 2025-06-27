@@ -17,35 +17,36 @@ import { doctores } from "../scripts/doctores.js";
       <div class="flex flex-col lg:flex-row gap-10">
         <!-- Galería de doctores -->
         <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-          {doctores.map((doctor) => (
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200">
-              <div class="relative overflow-hidden h-64">
-                <img 
-                  src={doctor.imagen} 
-                  alt={doctor.nombre} 
-                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" 
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              
-              <div class="p-5">
-                <h3 class="text-xl md:text-2xl font-bold text-font2 mb-1">{doctor.nombre}</h3>
-                <p class="text-sm md:text-base text-text1 mb-3">{doctor.especialidad}</p>
-                <p class="text-xs text-text3">Cédula profesional: {doctor.cedula}</p>
-                
-                <div class="mt-4 pt-4 border-t border-gray-100">
-                  <button class="text-sm font-medium text-font2 hover:text-hover2 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10.293 15.707a1 1 0 010-1.414L13.586 11H5a1 1 0 110-2h8.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"/>
-                    </svg>
-                    Ver perfil completo
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+  {doctores.map((doctor) => (
+    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 flex flex-col min-h-[420px]">
+      <div class="relative overflow-hidden h-64">
+        <img 
+          src={doctor.imagen} 
+          alt={doctor.nombre} 
+          class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" 
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+      
+      <div class="p-5 flex flex-col flex-grow">
+        <h3 class="text-xl md:text-2xl font-bold text-font2 mb-1">{doctor.nombre}</h3>
+        <p class="text-sm md:text-base text-text1 mb-3">{doctor.especialidad}</p>
+        <p class="text-xs text-text3">Cédula profesional: {doctor.cedula}</p>
+
+        <div class="mt-auto pt-4 border-t border-gray-100">
+          <button class="text-sm font-medium text-font2 hover:text-hover2 transition-colors flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.293 15.707a1 1 0 010-1.414L13.586 11H5a1 1 0 110-2h8.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"/>
+            </svg>
+            Ver perfil completo
+          </button>
         </div>
+      </div>
+    </div>
+  ))}
+</div>
+
 
         <!-- Contenedor del video con sticky solo en escritorio -->
         <div class="w-full lg:w-1/3">

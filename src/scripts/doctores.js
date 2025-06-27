@@ -1,44 +1,30 @@
 export const doctores = [
   {
     id: 1,
-    nombre: "Dr. Jordi Lopez",
-    especialidad: "Especialista en ortodoncia",
-    cedula: "12345678",
-    imagen: "/img_doctores/doctor7.png"
+    nombre: "Dr. Rodolfo Antonio Zavaleta Gordillo",
+    especialidad: "Odontologia general y ortodoncia",
+    cedula: "11369562 - Odontologia / 7083338 - Ortodoncia",
+    imagen: "/img_doctores/doctorMain.jpg"
   },
   {
     id: 2,
-    nombre: "Dr. Jonathan Sanchez",
-    especialidad: "Implantología dental",
-    cedula: "87654321",
-    imagen: "/img_doctores/doctor1.png"
+    nombre: "Dra. Itzel Fernanda Angel Diaz",
+    especialidad: "Odontologia en general",
+    cedula: "13380783",
+    imagen: "/img_doctores/ItzelFernanda.jpg"
   },
   {
     id: 3,
-    nombre: "Dra. Mariana Torres",
-    especialidad: "Endodoncia y estética dental",
-    cedula: "23456789",
-    imagen: "/img_doctores/doctor3.jpeg"
+    nombre: "Dra. Margarita Concepción Gomez Gutierrez",
+    especialidad: "Odontología en general",
+    cedula: "11746421",
+    imagen: "/img_doctores/MargaritaConcepcion.jpg"
   },
   {
     id: 4,
-    nombre: "Dr. Luis Gómez",
-    especialidad: "Cirugía maxilofacial",
-    cedula: "34567890",
-    imagen: "/img_doctores/doctor4.jpg"
-  },
-  {
-    id: 5,
-    nombre: "Dra. Alejandra Ruiz",
-    especialidad: "Odontopediatría",
-    cedula: "45678901",
-    imagen: "/img_doctores/doctor5.jpg"
-  },
-  {
-    id: 6,
-    nombre: "Dr. Enrique Morales",
-    especialidad: "Periodoncia",
-    cedula: "56789012",
-    imagen: "/img_doctores/doctor6.jpg"
+    nombre: "Dra. Maria Dolores González Piantzi",
+    especialidad: "Odontología en general",
+    cedula: "12970590",
+    imagen: "/img_doctores/MariaDolores.JPG"
   }
 ];
