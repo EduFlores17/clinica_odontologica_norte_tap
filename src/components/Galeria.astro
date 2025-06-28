@@ -1,14 +1,7 @@
 ---
 const imagenes = [
-  "/img_galeria/img1.jpg",
-  "/img_galeria/img2.jpg",
-  "/img_galeria/img3.jpg",
   "/img_galeria/img4.jpg",
   "/img_galeria/img5.jpg",
-  "/img_galeria/img6.jpg",
-  "/img_galeria/img7.jpg",
-  "/img_galeria/img8.jpg",
-  "/img_galeria/team1.jpg",
 ];
 ---
 
@@ -16,7 +9,7 @@ const imagenes = [
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-10 text-center">Galería</h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
       {imagenes.map((src, index) => (
         <button
           type="button"
@@ -26,7 +19,7 @@ const imagenes = [
           <img
             src={src}
             alt={`Imagen ${index + 1}`}
-            class="w-full h-64 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300"
+            class="w-full h-64 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300 cursor-pointer"
             loading="lazy"
           />
         </button>
@@ -53,6 +46,7 @@ const imagenes = [
     </div>
   </div>
 </section>
+
 
 <!-- Script -->
 <script is:inline>
