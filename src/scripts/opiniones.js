@@ -1,26 +1,26 @@
 export const opiniones = [
   {
     id: 1,
-    nombre: "Eduardo Flores",
-    tratamiento: "Tratamiento de ortodoncia",
-    imagen: "/img_opiniones/edu.jpg",
+    nombre: "Citlali Flores Guzman",
+    tratamiento: "Opinion general",
+    imagen: "/img_opiniones/citlalli.png",
     calificacion: 5,
-    texto: "El equipo me hizo sentir como en casa desde el primer día. Los resultados superaron todas mis expectativas. ¡Mi sonrisa nunca había lucido tan bien!"
+    texto: "La clínica Odontologica Norte a MI parecer a cubierto todas mis expectativas en su especialidad y quisiera poder corresponder positivamente con su propietario. DR. ROFOLFO ANTONIO ZAVALETA GORDILLO."
   },
   {
     id: 2,
-    nombre: "Aurora Ramírez",
-    tratamiento: "Blanqueamiento dental",
-    imagen: "/img_opiniones/auri.jpg",
+    nombre: "Arletys Gómez Sánchez",
+    tratamiento: "Opinion general",
+    imagen: "/img_opiniones/arleyts.png",
     calificacion: 5,
-    texto: "Después de años de sentirme insegura por mis dientes amarillos, ahora sonrío con confianza. ¡El cambio fue increíble en solo dos sesiones!"
+    texto: "Muy agradecida con la excelente atención que recibí en esta clínica, bendiciones infinitas🦷🙏🏻…"
   },
   {
     id: 3,
-    nombre: "Marcos Cardenas",
+    nombre: "Sonia Gordillo Mendoza",
     tratamiento: "Implantes dentales",
-    imagen: "/img_opiniones/marcos.jpg",
+    imagen: "/img_opiniones/sonia.png",
     calificacion: 5,
-    texto: "Pensé que nunca volvería a masticar normalmente después de perder mis dientes. Los implantes se sienten y ven completamente naturales. ¡Gracias!"
+    texto: "Es una clínica con más de 15 años los procedimientos son garantizados .es muy importante la participación del paciente acudiendo a sus citas  puntualmente."
   }
 ];
