@@ -18,26 +18,28 @@ import { doctores } from "../scripts/doctores.js";
         <!-- Galería de doctores -->
         <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
   {doctores.map((doctor) => (
-    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 flex flex-col min-h-[420px]">
-      <div class="relative overflow-hidden h-64">
+  <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 flex flex-col min-h-[420px]">
+    <div class="relative overflow-hidden h-64">
+      <picture>
+        <source srcset={doctor.imagen.replace(/\.(jpg|png)$/, '.webp')} type="image/webp" />
         <img 
           src={doctor.imagen} 
-          alt={doctor.nombre} 
+          alt={`Foto de ${doctor.nombre}, especialista en ${doctor.especialidad}`} 
           class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" 
-          loading="lazy"
+          loading="lazy" 
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      
-      <div class="p-5 flex flex-col flex-grow">
-        <h3 class="text-xl md:text-2xl font-bold text-font2 mb-1">{doctor.nombre}</h3>
-        <p class="text-sm md:text-base text-text1 mb-3">{doctor.especialidad}</p>
-        <p class="text-xs text-text3">Cédula profesional: {doctor.cedula}</p>
-
-        
-      </div>
+      </picture>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     </div>
-  ))}
+
+    <div class="p-5 flex flex-col flex-grow">
+      <h3 class="text-xl md:text-2xl font-bold text-font2 mb-1">{doctor.nombre}</h3>
+      <p class="text-sm md:text-base text-text1 mb-3">{doctor.especialidad}</p>
+      <p class="text-xs text-text3">Cédula profesional: {doctor.cedula}</p>
+    </div>
+  </div>
+))}
+
 </div>
 
 

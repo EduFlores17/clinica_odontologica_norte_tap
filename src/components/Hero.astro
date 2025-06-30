@@ -1,6 +1,5 @@
 ---
-const fondoHero = "";
-const paciente = "/img_doctores/doctorMain.jpg";
+const paciente = "/team1.jpg";
 ---
 
 <section
@@ -8,19 +7,17 @@ const paciente = "/img_doctores/doctorMain.jpg";
   class="min-h-[555px] bg-font2 flex items-center justify-center px-4 sm:px-6 py-16 font-display"
   aria-label="Sección principal con mensaje de bienvenida"
 >
-  <div
-    class="max-w-5xl w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-8"
-  >
+  <div class="max-w-5xl w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-8">
+    
     <!-- Texto -->
     <div class="text-white max-w-xl text-center lg:text-left">
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-  Tu sonrisa, nuestra 
-  <span class="text-font1">prioridad</span>.
-</h1>
+        Tu sonrisa es nuestra <span class="text-font1">prioridad</span>.
+      </h1>
 
       <p class="text-sm sm:text-base md:text-lg font-medium mb-6">
         Transformamos sonrisas con los tratamientos dentales estéticos<br />
-        más avanzados y personalizados para ti.
+        más avanzados y personalizados para ti en Tapachula, Chiapas.
       </p>
 
       <!-- Botones -->
@@ -33,33 +30,30 @@ const paciente = "/img_doctores/doctorMain.jpg";
           Contacto
         </a>
         <a
-  href="#servicios"
-  class="bg-font2 text-font1 font-semibold py-3 px-6 rounded-full shadow hover:bg-font1 hover:text-font2 border-2 border-transparent border-white hover:border-white transition-colors duration-300"
-  aria-label="Ir a servicios"
->
-  Servicios
-</a>
+          href="#servicios"
+          class="bg-font2 text-font1 font-semibold py-3 px-6 rounded-full shadow hover:bg-font1 hover:text-font2 border-2 border-transparent border-white hover:border-white transition-colors duration-300"
+          aria-label="Ir a servicios"
+        >
+          Servicios
+        </a>
       </div>
     </div>
 
     <!-- Imagen -->
-    <div
-      class="flex-shrink-0"
-      role="img"
-      aria-label="Paciente feliz con sonrisa dental"
-    >
-      <figure
-        class="h-40 w-40 sm:h-48 sm:w-48 md:h-60 md:w-60 rounded-full bg-white overflow-hidden"
-      >
-        <img
-          src={paciente}
-          alt="Paciente feliz después de tratamiento dental"
-          width="240"
-          height="240"
-          class="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
+    <div class="flex-shrink-0">
+      <figure class="h-40 w-40 sm:h-48 sm:w-48 md:h-60 md:w-60 rounded-full bg-white overflow-hidden">
+        <picture>
+          <source srcset="/team1.webp" type="image/webp" />
+          <img
+            src={paciente}
+            alt="Paciente sonriente tras tratamiento dental exitoso en Tapachula"
+            width="240"
+            height="240"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </figure>
     </div>
   </div>

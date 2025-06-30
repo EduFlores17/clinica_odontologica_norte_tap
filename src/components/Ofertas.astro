@@ -2,56 +2,53 @@
 import { ofertas } from '../scripts/ofertas.js';
 ---
 
-<section id="ofertas" class="bg-font1 py-16 px-4 sm:px-6 lg:px-8 font-display">
+<section id="ofertas" class="bg-font1 py-16 px-4 sm:px-6 lg:px-8 font-display" aria-label="Ofertas dentales en Tapachula">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl font-bold text-center text-[var(--color-text1)] mb-10">
       Ofertas Especiales
     </h2>
 
-<swiper-container
-  slides-per-view="1"
-  loop="true"
-  pagination="true"
-  navigation="true"
-  autoplay-delay="4000"
-  autoplay-disable-on-interaction="false"
-  class="rounded-2xl shadow-xl max-w-3xl mx-auto"
-  style="--swiper-pagination-color: white; --swiper-navigation-color: white;"
->
-  {
-    ofertas.map((oferta) => (
-      <swiper-slide aria-label={`Oferta: ${oferta.titulo}`}>
-        <article class="relative w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-md bg-gray-800 flex items-center justify-center">
-          {
-            oferta.imagen.endsWith('.mp4') ? (
-              <video 
-                src={oferta.imagen}
-                class="max-h-full max-w-[80%] object-contain rounded-md"
-                autoplay
-                muted
-                loop
-                playsinline
-              />
-            ) : (
-              <img 
-                src={oferta.imagen} 
-                alt={`Promoción: ${oferta.titulo}`} 
-                class="max-h-full max-w-[80%] object-contain rounded-md"
-                loading="lazy"
-              />
-            )
-          }
+    <swiper-container
+      slides-per-view="1"
+      loop="true"
+      pagination="true"
+      navigation="true"
+      autoplay-delay="4000"
+      autoplay-disable-on-interaction="false"
+      class="rounded-2xl shadow-xl max-w-3xl mx-auto"
+      style="--swiper-pagination-color: white; --swiper-navigation-color: white;"
+    >
+      {
+        ofertas.map((oferta) => (
+          <swiper-slide aria-label={`Oferta: ${oferta.titulo}`}>
+            <article class="relative w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-md bg-gray-800 flex items-center justify-center">
+              {
+                oferta.imagen.endsWith('.mp4') ? (
+                  <video
+                    src={oferta.imagen}
+                    class="max-h-full max-w-[80%] object-contain rounded-md"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    aria-label={`Video de la promoción ${oferta.titulo}`}
+                  />
+                ) : (
+                  <img
+                    src={oferta.imagen}
+                    alt={`Promoción: ${oferta.titulo}`}
+                    class="max-h-full max-w-[80%] object-contain rounded-md"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )
+              }
 
-          <!-- Borde decorativo (opcional) -->
-          <div class="absolute inset-0 rounded-2xl ring-1 ring-black/10 pointer-events-none"></div>
-        </article>
-      </swiper-slide>
-    ))
-  }
-</swiper-container>
-
-
-
-    
+              <div class="absolute inset-0 rounded-2xl ring-1 ring-black/10 pointer-events-none"></div>
+            </article>
+          </swiper-slide>
+        ))
+      }
+    </swiper-container>
   </div>
 </section>

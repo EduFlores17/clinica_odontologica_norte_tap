@@ -7,7 +7,7 @@ import { opiniones } from '../scripts/opiniones.js';
   <div class="mx-auto max-w-5xl">
     <!-- Encabezado mejorado -->
     <div class="mb-16 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-[var(--font-display)]">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-display">
         Opiniones
       </h2>
       <div class="mx-auto mt-4 max-w-3xl">
@@ -27,6 +27,7 @@ import { opiniones } from '../scripts/opiniones.js';
                 src={opinion.imagen} 
                 alt={`Foto de ${opinion.nombre}`} 
                 class="h-14 w-14 rounded-full object-cover shadow-md"
+                loading="lazy"
                 width="56"
                 height="56"
               />

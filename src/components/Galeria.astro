@@ -1,11 +1,11 @@
 ---
 const imagenes = [
-  "/img_galeria/img1.jpg",
-  "/img_galeria/img2.jpg",
-  "/img_galeria/img4.jpg",
-  "/img_galeria/img5.jpg",
-  "/img_galeria/img3.jpg",
-  "/img_galeria/img6.jpg",
+  "/img_galeria/img1.webp",
+  "/img_galeria/img2.webp",
+  "/img_galeria/img3.webp",
+  "/img_galeria/img6.webp",
+  "/img_galeria/img5.webp",
+  "/img_galeria/img4.webp",
 ];
 ---
 
@@ -18,14 +18,21 @@ const imagenes = [
         <button
           type="button"
           class="group"
-          onclick={`openModal('${src}')`}
+          data-src={src}
+          aria-label={`Abrir imagen ${index + 1}`}
         >
-          <img
-            src={src}
-            alt={`Imagen ${index + 1}`}
-            class="w-full h-64 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300 cursor-pointer"
-            loading="lazy"
-          />
+          <picture>
+            <source srcset={src} type="image/webp" />
+            <img
+              src={src.replace('.webp', '.jpg')}
+              alt={`Imagen ${index + 1}`}
+              class="w-full h-64 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300 cursor-pointer"
+              loading="lazy"
+              decoding="async"
+              width="400"
+              height="256"
+            />
+          </picture>
         </button>
       ))}
     </div>
@@ -51,28 +58,34 @@ const imagenes = [
   </div>
 </section>
 
-
-<!-- Script -->
 <script is:inline>
-  const modal = document.getElementById("modal");
-  const modalImage = document.getElementById("modalImage");
-  const closeModal = document.getElementById("closeModal");
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modalImage");
+    const closeModal = document.getElementById("closeModal");
 
-  function openModal(src) {
-    if (!modal || !modalImage) return;
-    modalImage.src = src;
-    modal.classList.remove("hidden");
-  }
-
-  closeModal?.addEventListener("click", () => {
-    modal?.classList.add("hidden");
-    modalImage.src = "";
-  });
-
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.add("hidden");
-      modalImage.src = "";
+    function openModal(src) {
+      modalImage.src = src;
+      modal.classList.remove("hidden");
     }
+
+    document.querySelectorAll("button[data-src]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const src = button.getAttribute("data-src");
+        if (src) openModal(src);
+      });
+    });
+
+    closeModal?.addEventListener("click", () => {
+      modal?.classList.add("hidden");
+      modalImage.src = "";
+    });
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modalImage.src = "";
+      }
+    });
   });
 </script>

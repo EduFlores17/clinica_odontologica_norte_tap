@@ -3,13 +3,13 @@ export const ofertas = [
     id: 1,
     titulo: "Resinas en buen precio.",
     descripcion: "Aprovecha este mes con el tratamiento de 6 resinas a $2650.00 MXN .",
-    imagen: "/img_ofertas/of1.jpeg",
+    imagen: "/img_ofertas/of1.webp",
   },
   {
     id: 2,
     titulo: "Pide tu cita.",
     descripcion: "Al número de telefono: 962 127 8373",
-    imagen: "/img_ofertas/of2.jpeg",
+    imagen: "/img_ofertas/of2.webp",
   },
   {
     id: 3,

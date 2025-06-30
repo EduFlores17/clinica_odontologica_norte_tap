@@ -1,18 +1,22 @@
 <header class="bg-font1 shadow-md sticky top-0 z-50 py-3 md:py-4">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 shrink-0">
-      <img
-        src="/Clinica1.png"
-        alt="Logo de Clínica Odontológica Norte"
-        class="h-10 sm:h-12 md:h-14 w-auto"
-        width="56"
-        height="56"
-      />
+    <!-- Logo optimizado con <picture> -->
+    <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Inicio">
+      <picture>
+        <source srcset="/Clinica1.webp" type="image/webp" />
+        <img
+          src="/Clinica1.png"
+          alt="Clínica Odontológica Norte, dentista en Tapachula"
+          class="h-10 sm:h-12 md:h-14 w-auto"
+          width="56"
+          height="56"
+          loading="lazy"
+        />
+      </picture>
     </a>
 
     <!-- Menú Desktop -->
-    <nav class="hidden md:flex items-center justify-center gap-6 lg:gap-8 font-display mx-auto" aria-label="Navegación principal">      
+    <nav class="hidden md:flex items-center justify-center gap-6 lg:gap-8 font-display mx-auto" aria-label="Navegación principal">
       <a href="/#servicios" class="text-text1 hover:text-font2 transition-colors duration-200 px-2 py-1 font-medium">Servicios</a>
       <a href="/#ofertas" class="text-text1 hover:text-font2 transition-colors duration-200 px-2 py-1 font-medium">Ofertas</a>
       <a href="/#nosotros" class="text-text1 hover:text-font2 transition-colors duration-200 px-2 py-1 font-medium">Nosotros</a>
@@ -50,63 +54,49 @@
   </nav>
 </header>
 
-<!-- SCRIPT: Hamburguesa + scroll suave + cierre de menú -->
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const menuButton = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const header = document.querySelector("header");
+    const menuButton = document.getElementById("menu-toggle") as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById("mobile-menu") as HTMLElement | null;
+    const header = document.querySelector("header") as HTMLElement | null;
 
     if (!menuButton || !mobileMenu || !header) return;
 
-    // Menú hamburguesa toggle
+    const toggleIcon = (expanded: boolean) => {
+      const icon = menuButton.querySelector("svg");
+      if (!icon) return;
+      icon.innerHTML = expanded
+        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>'
+        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+    };
+
     menuButton.addEventListener("click", () => {
       const isHidden = mobileMenu.classList.toggle("hidden");
       menuButton.setAttribute("aria-expanded", isHidden ? "false" : "true");
-
-      const icon = menuButton.querySelector("svg");
-      if (icon) {
-        icon.innerHTML = isHidden
-          ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>'
-          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
-      }
+      toggleIcon(!isHidden);
     });
 
-    // Scroll suave con compensación de header
-    document.querySelectorAll('a[href^="/#"]').forEach(link => {
-      link.addEventListener("click", e => {
+    const anchorLinks = document.querySelectorAll('a[href^="/#"]');
+    anchorLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
         if (!href) return;
-
         const targetId = href.replace("/#", "#");
         const target = document.querySelector(targetId);
         if (!target) return;
 
         e.preventDefault();
-
-        const headerOffset = header.offsetHeight;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
+        const offset = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight;
+        window.scrollTo({ top: offset, behavior: "smooth" });
 
         // Cierra menú móvil si está abierto
         if (!mobileMenu.classList.contains("hidden")) {
           mobileMenu.classList.add("hidden");
           menuButton.setAttribute("aria-expanded", "false");
-
-          const icon = menuButton.querySelector("svg");
-          if (icon) {
-            // Restaurar ícono hamburguesa
-            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-          }
+          toggleIcon(false);
         }
       });
     });
   });
 </script>
-
-
