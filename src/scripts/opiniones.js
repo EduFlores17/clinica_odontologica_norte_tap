@@ -5,7 +5,7 @@ export const opiniones = [
     tratamiento: "Opinion general",
     imagen: "/img_opiniones/citlalli.webp",
     calificacion: 5,
-    texto: "La clínica Odontologica Norte a MI parecer a cubierto todas mis expectativas en su especialidad y quisiera poder corresponder positivamente con su propietario. DR. ROFOLFO ANTONIO ZAVALETA GORDILLO."
+    texto: "La Clínica Odontológica Norte, a mi parecer, ha cubierto todas mis expectativas en su especialidad. Quisiera poder corresponder positivamente con su propietario, el Dr. Rodolfo Antonio Zavaleta Gordillo."
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const opiniones = [
     tratamiento: "Opinion general",
     imagen: "/img_opiniones/arleyts.webp",
     calificacion: 5,
-    texto: "Muy agradecida con la excelente atención que recibí en esta clínica, bendiciones infinitas🦷🙏🏻…"
+    texto: "Muy agradecida con la excelente atención que recibí en esta clínica, es lo mejor en cuanto a clinicas dentales en Tapachula. ¡Bendiciones infinitas! 🦷🙏🏻"
   },
   {
     id: 3,
@@ -21,6 +21,6 @@ export const opiniones = [
     tratamiento: "Implantes dentales",
     imagen: "/img_opiniones/sonia.webp",
     calificacion: 5,
-    texto: "Es una clínica con más de 15 años los procedimientos son garantizados .es muy importante la participación del paciente acudiendo a sus citas  puntualmente."
+    texto: "Es una clínica con más de 15 años de experiencia. Los procedimientos están garantizados. Es muy importante la participación del paciente, acudiendo puntualmente a sus citas."
   }
 ];
