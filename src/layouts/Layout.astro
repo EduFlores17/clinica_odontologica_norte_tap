@@ -41,6 +41,55 @@ import "../styles/global.css";
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+    <!-- Schema.org WebSite con SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Clínica Odontológica Norte",
+      "url": "https://clinicaodontologicanorte.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://clinicaodontologicanorte.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Schema.org Organization con secciones principales -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Clínica Odontológica Norte",
+      "url": "https://clinicaodontologicanorte.com/",
+      "logo": "https://clinicaodontologicanorte.com/Clinica1.png",
+      "sameAs": [],
+      "department": [
+        {
+          "@type": "MedicalBusiness",
+          "name": "Servicios Odontológicos",
+          "url": "https://clinicaodontologicanorte.com/#servicios"
+        },
+        {
+          "@type": "MedicalBusiness",
+          "name": "Conócenos",
+          "url": "https://clinicaodontologicanorte.com/conocenos"
+        },
+        {
+          "@type": "MedicalBusiness",
+          "name": "Ofertas y Promociones",
+          "url": "https://clinicaodontologicanorte.com/#ofertas"
+        },
+        {
+          "@type": "MedicalBusiness",
+          "name": "Contáctanos",
+          "url": "https://clinicaodontologicanorte.com/#contacto"
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
