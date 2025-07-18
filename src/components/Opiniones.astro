@@ -1,52 +1,70 @@
 ---
-// Asegúrate de que las opiniones están siendo importadas correctamente
-import { opiniones } from '../scripts/opiniones.js';
----
+interface Opinion {
+  author_name: string;
+  profile_photo_url: string;
+  relative_time_description: string;
+  rating: number;
+  text: string;
+  time: number;
+}
 
+const placeId = 'ChIJuZ02G9QOjoURmIrfTOqGlJ8';
+const apiKey = 'AIzaSyA9Y4okSQcTGceR1QI47T5WOV_NzIJA6yA';
+
+const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}&language=es`);
+const data = await response.json();
+
+// Filtrar opiniones de 5 a 3 estrellas y ordenarlas por fecha (más recientes primero)
+const opiniones: Opinion[] = data.result?.reviews
+  .filter((opinion: Opinion) => opinion.rating >= 3)
+  .sort((a: Opinion, b: Opinion) => b.time - a.time || b.rating - a.rating) || [];
+---
 <section id="opiniones" class="bg-font4 py-20 px-4 sm:px-6">
-  <div class="mx-auto max-w-5xl">
-    <!-- Encabezado mejorado -->
-    <div class="mb-16 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-display">
-        Opiniones
-      </h2>
-      <div class="mx-auto mt-4 max-w-3xl">
-        <p class="text-lg text-text2 font-display">
-          La satisfacción de nuestros pacientes es nuestra mejor carta de presentación
-        </p>
-      </div>
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#080A0C] mb-4 font-display">Opiniones</h2>
+      <p class="text-lg text-text2 font-display max-w-3xl mx-auto">
+        La satisfacción de nuestros pacientes es nuestra mejor carta de presentación
+      </p>
     </div>
 
-    <!-- Grid de testimonios -->
-    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 font-display">
-      {opiniones.map((opinion) => (
-        <div class="group relative overflow-hidden rounded-xl bg-white p-6 sm:p-8 shadow-lg shadow-blue-100/50 transition-all hover:shadow-xl hover:shadow-blue-200/50">
-          <div class="relative z-10">
+    <swiper-container
+      slides-per-view="1"
+      breakpoints='{"640": {"slidesPerView": 1}, "768": {"slidesPerView": 2}, "1024": {"slidesPerView": 3}}'
+      space-between="30"
+      loop="true"
+      navigation="true"
+      autoplay='{"delay": 5000}'
+      class="!pb-10"
+    >
+      {opiniones.map((opinion: Opinion) => (
+        <swiper-slide class="!h-auto">
+          <div class="flex flex-col justify-between h-full rounded-xl bg-white p-6 sm:p-8 shadow-lg shadow-blue-100/50 transition-all hover:shadow-xl hover:shadow-blue-200/50">
             <div class="mb-6 flex items-center gap-4">
               <img 
-                src={opinion.imagen} 
-                alt={`Foto de ${opinion.nombre}`} 
+                src={opinion.profile_photo_url} 
+                alt={`Foto de ${opinion.author_name}`} 
                 class="h-14 w-14 rounded-full object-cover shadow-md"
                 loading="lazy"
                 width="56"
                 height="56"
               />
               <div>
-                <p class="font-bold text-text1">{opinion.nombre}</p>
-                <p class="text-sm text-font2">{opinion.tratamiento}</p>
-                <div class="mt-1 flex text-yellow-400" aria-label={`Calificación de ${opinion.nombre}`}>
-                  {'★'.repeat(opinion.calificacion)}{'☆'.repeat(5 - opinion.calificacion)}
+                <p class="font-bold text-text1">{opinion.author_name}</p>
+                <p class="text-sm text-font2">{opinion.relative_time_description}</p>
+                <div class="mt-1 flex text-yellow-400">
+                  {'★'.repeat(opinion.rating)}{'☆'.repeat(5 - opinion.rating)}
                 </div>
               </div>
             </div>
-            <blockquote class="text-gray-700">
-              <p class="relative before:absolute before:-left-6 before:top-0 before:text-4xl before:font-serif before:text-blue-200 before:content-['\\201C']">
-                {opinion.texto}
+            <blockquote class="text-gray-700 flex-grow">
+              <p class="relative before:absolute before:-left-6 before:top-0 before:text-4xl before:font-serif before:text-blue-200 before:content-['\\201C'] min-h-[96px]">
+                {opinion.text}
               </p>
             </blockquote>
           </div>
-        </div>
+        </swiper-slide>
       ))}
-    </div>
+    </swiper-container>
   </div>
 </section>
