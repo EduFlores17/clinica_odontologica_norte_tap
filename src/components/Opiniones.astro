@@ -1,24 +1,94 @@
 ---
+// Importar componentes de Astro y declarar variables con tipos explícitos
+
 interface Opinion {
-  author_name: string;
-  profile_photo_url: string;
-  relative_time_description: string;
   rating: number;
-  text: string;
   time: number;
+  snippet?: string;
+  extracted_snippet?: {
+    original?: string;
+  };
+  user?: {
+    name?: string;
+    thumbnail?: string;
+  };
+  published_date?: string;
+  date?: string;
+  iso_date?: string;
 }
 
-const placeId = 'ChIJuZ02G9QOjoURmIrfTOqGlJ8';
-const apiKey = 'AIzaSyA9Y4okSQcTGceR1QI47T5WOV_NzIJA6yA';
+const apiKey = "79b882c7e4912e6126c0da06dc1bbe3a0928e078b78976fe80fad5e22c82404e";
+const dataId = "0x858e0ed41b369db9:0x9f9486ea4cdf8a98";
 
-const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}&language=es`);
-const data = await response.json();
+let opiniones: Opinion[] = [];
+let nextPageToken: string | null = null;
 
-// Filtrar opiniones de 5 a 3 estrellas y ordenarlas por fecha (más recientes primero)
-const opiniones: Opinion[] = data.result?.reviews
-  .filter((opinion: Opinion) => opinion.rating >= 3)
-  .sort((a: Opinion, b: Opinion) => b.time - a.time || b.rating - a.rating) || [];
+// Función para obtener las opiniones desde la API de SerpApi
+async function fetchOpiniones(): Promise<void> {
+  try {
+    let url = `https://serpapi.com/search.json?engine=google_maps_reviews&data_id=${dataId}&hl=es&api_key=${apiKey}`;
+    if (nextPageToken) {
+      url += `&next_page_token=${nextPageToken}`;  // Incluir el token para obtener la siguiente página
+    }
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.reviews) {
+      // Filtrar solo las opiniones de 5 estrellas
+      const opiniones5Estrellas = data.reviews.filter((opinion: Opinion) => opinion.rating === 5);
+      opiniones = [...opiniones, ...opiniones5Estrellas];  // Añadir solo las de 5 estrellas al arreglo
+    }
+
+    // Verificar si hay más páginas
+    nextPageToken = data.pagination?.next_page_token || null;
+
+    // Si hay más páginas, seguir obteniendo
+    if (nextPageToken) {
+      await fetchOpiniones();  // Llamada recursiva para cargar más páginas
+    }
+  } catch (error) {
+    console.error("Error obteniendo opiniones de SerpApi:", error);
+  }
+}
+
+// Llamada inicial para obtener todas las opiniones
+await fetchOpiniones();
+
+// Función para formatear la fecha de la opinión
+function formatearFecha(opinion: Opinion): string {
+  const fechaISO = opinion.iso_date || opinion.published_date;
+  if (fechaISO) {
+    const fecha = new Date(fechaISO);
+    return fecha.toLocaleDateString("es-MX", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
+
+  const segundos = Math.floor(Date.now() / 1000) - opinion.time;
+  const intervalos = [
+    { label: "año", segundos: 31536000 },
+    { label: "mes", segundos: 2592000 },
+    { label: "semana", segundos: 604800 },
+    { label: "día", segundos: 86400 },
+    { label: "hora", segundos: 3600 },
+    { label: "minuto", segundos: 60 },
+    { label: "segundo", segundos: 1 },
+  ];
+
+  for (const i of intervalos) {
+    const cantidad = Math.floor(segundos / i.segundos);
+    if (cantidad >= 1) {
+      return `hace ${cantidad} ${i.label}${cantidad > 1 ? "s" : ""}`;
+    }
+  }
+
+  return "justo ahora";
+}
 ---
+
 <section id="opiniones" class="bg-font4 py-20 px-4 sm:px-6">
   <div class="mx-auto max-w-6xl">
     <div class="mb-12 text-center">
@@ -37,34 +107,38 @@ const opiniones: Opinion[] = data.result?.reviews
       autoplay='{"delay": 5000}'
       class="!pb-10"
     >
-      {opiniones.map((opinion: Opinion) => (
-        <swiper-slide class="!h-auto">
-          <div class="flex flex-col justify-between h-full rounded-xl bg-white p-6 sm:p-8 shadow-lg shadow-blue-100/50 transition-all hover:shadow-xl hover:shadow-blue-200/50">
-            <div class="mb-6 flex items-center gap-4">
-              <img 
-                src={opinion.profile_photo_url} 
-                alt={`Foto de ${opinion.author_name}`} 
-                class="h-14 w-14 rounded-full object-cover shadow-md"
-                loading="lazy"
-                width="56"
-                height="56"
-              />
-              <div>
-                <p class="font-bold text-text1">{opinion.author_name}</p>
-                <p class="text-sm text-font2">{opinion.relative_time_description}</p>
-                <div class="mt-1 flex text-yellow-400">
-                  {'★'.repeat(opinion.rating)}{'☆'.repeat(5 - opinion.rating)}
+      {opiniones.length > 0 ? (
+        opiniones.map((opinion: Opinion) => (
+          <swiper-slide class="!h-auto">
+            <div class="flex flex-col justify-between h-full rounded-xl bg-white p-6 sm:p-8 shadow-lg shadow-blue-100/50 transition-all hover:shadow-xl hover:shadow-blue-200/50">
+              <div class="mb-6 flex items-center gap-4">
+                <img 
+                  src={opinion.user?.thumbnail || '/path/to/default-avatar.jpg'} 
+                  alt={`Foto de ${opinion.user?.name || 'Anónimo'}`} 
+                  class="h-14 w-14 rounded-full object-cover shadow-md"
+                  loading="lazy"
+                  width="56"
+                  height="56"
+                />
+                <div>
+                  <p class="font-bold text-text1">{opinion.user?.name || 'Anónimo'}</p>
+                  <p class="text-sm text-font2">{formatearFecha(opinion)}</p>
+                  <div class="mt-1 flex text-yellow-400">
+                    {'★'.repeat(opinion.rating)}{'☆'.repeat(5 - opinion.rating)}
+                  </div>
                 </div>
               </div>
+              <blockquote class="text-gray-700 flex-grow">
+                <p class="relative before:absolute before:-left-6 before:top-0 before:text-4xl before:font-serif before:text-blue-200 before:content-['\\201C'] min-h-[96px]">
+                  {opinion.snippet || opinion.extracted_snippet?.original || 'No hay texto disponible.'}
+                </p>
+              </blockquote>
             </div>
-            <blockquote class="text-gray-700 flex-grow">
-              <p class="relative before:absolute before:-left-6 before:top-0 before:text-4xl before:font-serif before:text-blue-200 before:content-['\\201C'] min-h-[96px]">
-                {opinion.text}
-              </p>
-            </blockquote>
-          </div>
-        </swiper-slide>
-      ))}
+          </swiper-slide>
+        ))
+      ) : (
+        <p class="text-center text-gray-500">No hay opiniones disponibles.</p>
+      )}
     </swiper-container>
   </div>
 </section>
